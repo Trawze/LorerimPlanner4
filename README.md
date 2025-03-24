@@ -8,8 +8,7 @@ Build management: save, load, and share character builds.
 
 
 Technologies Used:
-HTML, CSS, JavaScript
-GitHub Pages for hosting
+HTML, CSS, JavaScript and GitHub Pages for hosting
 
 Future plans:
 Complete overview of spells, unique weapons and armors featured in Lorerim.
