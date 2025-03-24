@@ -184,7 +184,7 @@
                 "value": 10,
                 "type": "percent"
             },
-            "poison_resistance": {
+            "poison_resist": {
                 "value": 50,
                 "type": "percent"
             }
@@ -192,7 +192,7 @@
         "enhanced_bonus": {
             "trigger_level": 40,
             "effects": {
-                "poison_resistance": {
+                "poison_resist": {
                     "value": 100,
                     "type": "percent"
                 }

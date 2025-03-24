@@ -88,10 +88,11 @@ class TooltipManager {
             damage: 0
         };
 
-        // Modify resistance sources to include lifepath
+        // Modify resistance sources to include lifepath and birthsign
         this.resistanceSources = {
             racial: {},
             lifepath: {},
+            birthsign: {},
             perks: {},
         };
 
@@ -349,11 +350,22 @@ class TooltipManager {
         });
 
         this.birthsignOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                const selectedBirthsign = e.target.dataset.birthsign;
-                this.selectedBirthsignText.textContent = e.target.textContent;
-                this.birthsignDropdownContent.classList.add('hidden');
-                this.updateBirthsignTooltip(selectedBirthsign);
+            option.addEventListener('click', () => {
+                const birthsign = option.getAttribute('data-birthsign');
+                this.selectedBirthsignText.textContent = birthsign.charAt(0).toUpperCase() + birthsign.slice(1);
+                this.selectedBirthsignText = this.selectedBirthsignText;
+                
+                // Hide dropdown
+                option.closest('.dropdown-content').classList.add('hidden');
+                
+                // Update birthsign tooltip
+                this.updateBirthsignTooltip(birthsign);
+                
+                // Update birthsign resistances
+                this.updateBirthsignResistances(birthsign);
+                
+                // Update attributes to reflect new birthsign bonuses
+                this.updateAttributeDisplay();
             });
 
             option.addEventListener('mouseenter', (e) => {
@@ -832,9 +844,28 @@ class TooltipManager {
             race.name === this.selectedRaceText.textContent
         )?.bonusStats || { health: 0, magicka: 0, stamina: 0 };
 
-        const baseHealth = this.baseAttributes.health + raceBonus.health;
-        const baseMagicka = this.baseAttributes.magicka + raceBonus.magicka;
-        const baseStamina = this.baseAttributes.stamina + raceBonus.stamina;
+        // Get birthsign bonus if any
+        const birthsignBonus = { health: 0, magicka: 0, stamina: 0 };
+        const selectedBirthsign = this.birthsignData?.find(sign => 
+            sign.name === this.selectedBirthsignText.textContent
+        );
+
+        if (selectedBirthsign?.bonus) {
+            // Check each attribute in the birthsign bonus
+            if (selectedBirthsign.bonus.health) {
+                birthsignBonus.health = selectedBirthsign.bonus.health.value;
+            }
+            if (selectedBirthsign.bonus.magicka) {
+                birthsignBonus.magicka = selectedBirthsign.bonus.magicka.value;
+            }
+            if (selectedBirthsign.bonus.stamina) {
+                birthsignBonus.stamina = selectedBirthsign.bonus.stamina.value;
+            }
+        }
+
+        const baseHealth = this.baseAttributes.health + raceBonus.health + birthsignBonus.health;
+        const baseMagicka = this.baseAttributes.magicka + raceBonus.magicka + birthsignBonus.magicka;
+        const baseStamina = this.baseAttributes.stamina + raceBonus.stamina + birthsignBonus.stamina;
 
         // Format the display with base + allocated points, only showing bonus if it exists
         healthValue.innerHTML = baseHealth + 
@@ -886,43 +917,37 @@ class TooltipManager {
     }
 
     updateResistances() {
-        // Reset base resistances
-        const totalResistances = {
-            fire: 0,
-            frost: 0,
-            shock: 0,
-            poison: 0,
-            disease: 0,
-            magic: 0,
-            damage: 0
-        };
+        // Reset all resistances
+        for (const type in this.resistances) {
+            this.resistances[type] = 0;
+        }
 
-        // Add racial resistances
-        Object.entries(this.resistanceSources.racial).forEach(([type, value]) => {
-            totalResistances[type] = (totalResistances[type] || 0) + value;
-        });
+        // Combine all resistance sources
+        const allSources = [
+            this.resistanceSources.racial,
+            this.resistanceSources.lifepath,
+            this.resistanceSources.birthsign,
+            this.resistanceSources.perks
+        ];
 
-        // Add lifepath resistances
-        Object.entries(this.resistanceSources.lifepath).forEach(([type, value]) => {
-            totalResistances[type] = (totalResistances[type] || 0) + value;
-        });
-
-        // Add perk resistances (for future implementation)
-        Object.entries(this.resistanceSources.perks).forEach(([type, value]) => {
-            totalResistances[type] = (totalResistances[type] || 0) + value;
-        });
-
-        // Update the UI with stacked resistances
-        Object.entries(totalResistances).forEach(([type, value]) => {
-            const resistanceElement = document.querySelector(`#${type}-resistance`);
-            if (resistanceElement) {
-                const displayValue = value > 0 ? `+${value}` : value;
-                const colorClass = value > 0 ? 'text-green-400' : 
-                                 value < 0 ? 'text-red-400' : 
-                                 'text-gray-300';
-                resistanceElement.innerHTML = `<span class="${colorClass}">${displayValue}%</span>`;
+        // Add up resistances from all sources
+        allSources.forEach(source => {
+            for (const [type, value] of Object.entries(source)) {
+                if (this.resistances.hasOwnProperty(type)) {
+                    this.resistances[type] += value;
+                }
             }
         });
+
+        // Update the display
+        for (const type in this.resistances) {
+            const element = document.getElementById(`${type}-resistance`);
+            if (element) {
+                const value = this.resistances[type];
+                element.textContent = `${value > 0 ? '+' : ''}${value}%`;
+                element.className = value > 0 ? 'text-green-400' : value < 0 ? 'text-red-400' : 'text-gray-300';
+            }
+        }
     }
 
     updateLifepathStats(lifepathName) {
@@ -1000,6 +1025,39 @@ class TooltipManager {
                 }
             });
         });
+    }
+
+    updateBirthsignResistances(birthsign) {
+        // Reset previous birthsign resistances
+        this.resistanceSources.birthsign = {};
+
+        // Find the birthsign data
+        const birthsignInfo = this.birthsignData?.find(sign => 
+            sign.name.toLowerCase() === birthsign.toLowerCase()
+        );
+
+        if (birthsignInfo?.bonus) {
+            // Check for resistance-related bonuses
+            for (const [stat, details] of Object.entries(birthsignInfo.bonus)) {
+                if (stat.includes('resist') || stat.includes('weakness')) {
+                    // Convert stat name to match resistance system
+                    let resistType = stat
+                        .replace('_resist', '')
+                        .replace('_weakness', '');
+                    
+                    // Handle weakness by making the value negative
+                    let value = details.value;
+                    if (stat.includes('weakness')) {
+                        value = -value;
+                    }
+
+                    this.resistanceSources.birthsign[resistType] = value;
+                }
+            }
+        }
+
+        // Update resistance display
+        this.updateResistances();
     }
 }
 
