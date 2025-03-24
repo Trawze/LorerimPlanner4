@@ -1085,18 +1085,36 @@
 
             <!-- Attribute Points Distribution -->
             <div class="flex gap-2 mb-4" id="attribute-points">
-                <button class="flex-1 bg-red-900 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                    <i class="fa-solid fa-heart text-red-500 mr-1"></i>
-                    Health +5
-                </button>
-                <button class="flex-1 bg-blue-900 hover:bg-blue-800 p-1.5 rounded-lg text-xs transition-colors">
-                    <i class="fa-solid fa-droplet text-blue-500 mr-1"></i>
-                    Magicka +5
-                </button>
-                <button class="flex-1 bg-green-900 hover:bg-green-800 p-1.5 rounded-lg text-xs transition-colors">
-                    <i class="fa-solid fa-bolt text-green-500 mr-1"></i>
-                    Stamina +5
-                </button>
+                <div class="flex-1 flex flex-col gap-1">
+                    <button class="bg-red-900 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-heart text-red-500 mr-1"></i>
+                        Health +5
+                    </button>
+                    <button class="bg-red-900/50 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-heart text-red-500/75 mr-1"></i>
+                        Health -5
+                    </button>
+                </div>
+                <div class="flex-1 flex flex-col gap-1">
+                    <button class="bg-blue-900 hover:bg-blue-800 p-1.5 rounded-lg text-xs transition-colors">
+                        <i class="fa-solid fa-droplet text-blue-500 mr-1"></i>
+                        Magicka +5
+                    </button>
+                    <button class="bg-blue-900/50 hover:bg-blue-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-droplet text-blue-500/75 mr-1"></i>
+                        Magicka -5
+                    </button>
+                </div>
+                <div class="flex-1 flex flex-col gap-1">
+                    <button class="bg-green-900 hover:bg-green-800 p-1.5 rounded-lg text-xs transition-colors">
+                        <i class="fa-solid fa-bolt text-green-500 mr-1"></i>
+                        Stamina +5
+                    </button>
+                    <button class="bg-green-900/50 hover:bg-green-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-bolt text-green-500/75 mr-1"></i>
+                        Stamina -5
+                    </button>
+                </div>
             </div>
 
             <!-- Character Stats -->

@@ -48,9 +48,14 @@ class TooltipManager {
 
         // Initialize attribute management
         this.levelInput = document.querySelector('#character-level input');
-        this.healthButton = document.querySelector('#attribute-points button:nth-child(1)');
-        this.magickaButton = document.querySelector('#attribute-points button:nth-child(2)');
-        this.staminaButton = document.querySelector('#attribute-points button:nth-child(3)');
+        this.healthButton = document.querySelector('#attribute-points .flex-1:nth-child(1) button:first-child');
+        this.magickaButton = document.querySelector('#attribute-points .flex-1:nth-child(2) button:first-child');
+        this.staminaButton = document.querySelector('#attribute-points .flex-1:nth-child(3) button:first-child');
+        
+        // Get attribute buttons with more specific selectors
+        this.healthDecreaseButton = document.querySelector('#attribute-points .flex-1:nth-child(1) button:last-child');
+        this.magickaDecreaseButton = document.querySelector('#attribute-points .flex-1:nth-child(2) button:last-child');
+        this.staminaDecreaseButton = document.querySelector('#attribute-points .flex-1:nth-child(3) button:last-child');
         
         // Reset level input on page load
         this.levelInput.value = '';
@@ -773,31 +778,43 @@ class TooltipManager {
         // Listen for level changes
         this.levelInput.addEventListener('change', () => {
             const newLevel = parseInt(this.levelInput.value) || 0;
-            
-            // Only add points for the difference in levels
             if (newLevel > previousLevel) {
-                // Add one point per level gained
                 this.attributePoints.available += (newLevel - previousLevel);
             } else if (newLevel < previousLevel) {
-                // Remove points if level decreased (optional)
                 const pointsToRemove = previousLevel - newLevel;
                 this.attributePoints.available = Math.max(0, this.attributePoints.available - pointsToRemove);
             }
-            
             previousLevel = newLevel;
             this.updateAttributeButtons();
         });
 
-        // Attribute button listeners
+        // Add attribute button listeners
         this.healthButton.addEventListener('click', () => this.addAttributePoint('health'));
         this.magickaButton.addEventListener('click', () => this.addAttributePoint('magicka'));
         this.staminaButton.addEventListener('click', () => this.addAttributePoint('stamina'));
+        
+        // Add decrease button listeners
+        this.healthDecreaseButton.addEventListener('click', () => this.removeAttributePoint('health'));
+        this.magickaDecreaseButton.addEventListener('click', () => this.removeAttributePoint('magicka'));
+        this.staminaDecreaseButton.addEventListener('click', () => this.removeAttributePoint('stamina'));
+
+        // Initial update
+        this.updateAttributeButtons();
     }
 
     addAttributePoint(attribute) {
         if (this.attributePoints.available > 0) {
             this.attributePoints.spent[attribute] += 5;
             this.attributePoints.available--;
+            this.updateAttributeDisplay();
+            this.updateAttributeButtons();
+        }
+    }
+
+    removeAttributePoint(attribute) {
+        if (this.attributePoints.spent[attribute] > 0) {
+            this.attributePoints.spent[attribute] -= 5;
+            this.attributePoints.available++;
             this.updateAttributeDisplay();
             this.updateAttributeButtons();
         }
@@ -828,9 +845,10 @@ class TooltipManager {
 
     updateAttributeButtons() {
         const buttonsEnabled = this.attributePoints.available > 0;
+        const decreaseButtons = [this.healthDecreaseButton, this.magickaDecreaseButton, this.staminaDecreaseButton];
         
-        // Update button states
-        [this.healthButton, this.magickaButton, this.staminaButton].forEach(button => {
+        // Update increase buttons
+        [this.healthButton, this.magickaButton, this.staminaButton].forEach((button, index) => {
             if (buttonsEnabled) {
                 button.classList.remove('opacity-50', 'cursor-not-allowed');
                 button.removeAttribute('disabled');
@@ -838,15 +856,31 @@ class TooltipManager {
                 button.classList.add('opacity-50', 'cursor-not-allowed');
                 button.setAttribute('disabled', 'true');
             }
-        });
 
-        // Update button text to show available points
-        const pointsText = this.attributePoints.available > 0 ? 
-            ` (${this.attributePoints.available} left)` : '';
+            // Update button text to show available points
+            const pointsText = this.attributePoints.available > 0 ? 
+                ` (${this.attributePoints.available} left)` : '';
+            const attribute = ['Health', 'Magicka', 'Stamina'][index];
+            button.innerHTML = `<i class="fa-solid ${index === 0 ? 'fa-heart text-red-500' : index === 1 ? 'fa-droplet text-blue-500' : 'fa-bolt text-green-500'} mr-1"></i>${attribute} +5${pointsText}`;
+        });
+        
+        // Update decrease buttons
+        decreaseButtons.forEach((button, index) => {
+            const attribute = ['health', 'magicka', 'stamina'][index];
+            const canDecrease = this.attributePoints.spent[attribute] > 0;
             
-        this.healthButton.textContent = `Health +5${pointsText}`;
-        this.magickaButton.textContent = `Magicka +5${pointsText}`;
-        this.staminaButton.textContent = `Stamina +5${pointsText}`;
+            if (canDecrease) {
+                button.classList.remove('opacity-50', 'cursor-not-allowed');
+                button.removeAttribute('disabled');
+            } else {
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+                button.setAttribute('disabled', 'true');
+            }
+
+            // Keep the icon in the decrease buttons
+            const attribute_name = ['Health', 'Magicka', 'Stamina'][index];
+            button.innerHTML = `<i class="fa-solid ${index === 0 ? 'fa-heart text-red-500/75' : index === 1 ? 'fa-droplet text-blue-500/75' : 'fa-bolt text-green-500/75'} mr-1"></i>${attribute_name} -5`;
+        });
     }
 
     updateResistances() {
