@@ -30,10 +30,6 @@
                 "Marksman"
             ],
             "effects": {
-                "health": {
-                    "value": 50,
-                    "type": "flat"
-                },
                 "armor_penetration": {
                     "value": 10,
                     "type": "percent"
@@ -53,38 +49,6 @@
             "stamina": {
                 "value": 25,
                 "type": "flat"
-            },
-            "stamina_regeneration": {
-                "value": 40,
-                "type": "percent"
-            },
-            "health_regeneration": {
-                "value": 40,
-                "type": "percent"
-            },
-            "exhaustion_resistance": {
-                "value": true,
-                "type": "boolean"
-            }
-        },
-        "enhanced_bonus": {
-            "trigger_skills": [
-                "Block",
-                "Heavy Armor",
-                "One-Handed",
-                "Smithing",
-                "Two-Handed",
-                "Archery"
-            ],
-            "effects": {
-                "health_regeneration": {
-                    "value": 80,
-                    "type": "percent"
-                },
-                "stamina_regeneration": {
-                    "value": 80,
-                    "type": "percent"
-                }
             }
         }
     },
@@ -96,10 +60,6 @@
             "magic_resist": {
                 "value": 10,
                 "type": "percent"
-            },
-            "armor_rating": {
-                "value": 150,
-                "type": "flat"
             },
             "fire_weakness": {
                 "value": 25,
@@ -128,41 +88,9 @@
         "group": "The Steed is one of the Warrior's Charges, and her season is Mid Year.",
         "description": "Those under the sign of the Steed have increased speed.",
         "bonus": {
-            "movement_speed": {
-                "value": 10,
-                "type": "percent"
-            },
-            "carry_weight": {
-                "value": 25,
-                "type": "flat"
-            },
             "stamina": {
                 "value": 50,
                 "type": "flat"
-            },
-            "slow_resistance": {
-                "value": true,
-                "type": "boolean"
-            },
-            "stamina_regeneration": {
-                "value": 1,
-                "type": "flat"
-            }
-        },
-        "enhanced_bonus": {
-            "trigger_skills": [
-                "Block",
-                "Heavy Armor",
-                "One-Handed",
-                "Smithing",
-                "Two-Handed",
-                "Archery"
-            ],
-            "effects": {
-                "stamina_regeneration": {
-                    "value": 1,
-                    "type": "flat"
-                }
             }
         }
     },
@@ -174,10 +102,6 @@
             "magicka": {
                 "value": 75,
                 "type": "flat"
-            },
-            "spell_power": {
-                "value": 20,
-                "type": "percent"
             }
         }
     },
@@ -190,11 +114,7 @@
                 "value": 100,
                 "type": "flat"
             },
-            "magicka_regeneration": {
-                "value": 300,
-                "type": "percent"
-            },
-            "magic_damage": {
+            "magic_weakness": {
                 "value": 20,
                 "type": "percent"
             }
@@ -208,64 +128,19 @@
             "magicka": {
                 "value": 450,
                 "type": "flat"
-            },
-            "magicka_absorption": {
-                "value": 30,
-                "type": "percent"
-            },
-            "magicka_regeneration": {
-                "value": 0,
-                "type": "flat"
             }
         }
     },
     {
         "name": "Ritual",
         "group": "The Ritual is one of the Mage's Charges and its season is Morning Star.",
-        "description": "Those under the sign of the Ritual have various abilities depending on the aspect of the moons and Divines.",
-        "bonus": {
-            "blessed_fire": {
-                "value": true,
-                "type": "boolean"
-            },
-            "dead_horde": {
-                "value": true,
-                "type": "boolean"
-            },
-            "salvation": {
-                "value": true,
-                "type": "boolean"
-            }
-        },
-        "enhanced_bonus": {
-            "trigger_skills": [
-                "Enchanting"
-            ],
-            "effects": {
-                "enchanting_power": {
-                    "value": 10,
-                    "type": "percent"
-                }
-            }
-        }
+        "description": "Those under the sign of the Ritual have various abilities depending on the aspect of the moons and Divines."
     },
     {
         "name": "Thief",
         "group": "The Thief is the last Guardian Constellation, and her season is the darkest month of Evening Star.",
         "description": "Those under the sign of the Thief have increased dexterity.",
         "bonus": {
-            "lockpick_durability": {
-                "value": 30,
-                "type": "percent"
-            },
-            "pickpocket_success": {
-                "value": 30,
-                "type": "percent"
-            },
-            "stealth": {
-                "value": 30,
-                "type": "percent"
-            },
             "physical_damage_resistance": {
                 "value": 10,
                 "type": "percent"
@@ -277,10 +152,6 @@
         "group": "The Lover is one of the Thief's Charges and her season is Sun's Dawn",
         "description": "Those under the sign of the Lover have increases agility and natural charm.",
         "bonus": {
-            "stamina_regeneration": {
-                "value": 40,
-                "type": "percent"
-            },
             "physical_damage_resistance": {
                 "value": 25,
                 "type": "percent"
@@ -288,21 +159,6 @@
             "speech_skill": {
                 "value": 25,
                 "type": "flat"
-            },
-            "shout_cooldown": {
-                "value": 5,
-                "type": "percent"
-            }
-        },
-        "enhanced_bonus": {
-            "trigger_skills": [
-                "Speech"
-            ],
-            "effects": {
-                "shout_cooldown": {
-                    "value": 10,
-                    "type": "percent"
-                }
             }
         }
     },
@@ -311,17 +167,9 @@
         "group": "The Shadow's season is Second Seed.",
         "description": "Those under the sign of the Shadow are naturally skilled at stealth and can hide in the shadows once a day.",
         "bonus": {
-            "stealth": {
-                "value": 50,
+            "armor_penetration": {
+                "value": 0,
                 "type": "percent"
-            },
-            "sneak_without_proficiency": {
-                "value": true,
-                "type": "boolean"
-            },
-            "moonshadow_power": {
-                "value": true,
-                "type": "boolean"
             }
         },
         "enhanced_bonus": {
@@ -341,38 +189,7 @@
     {
         "name": "Tower",
         "group": "The Tower is one of the Thief's Charges and its season is Frostfall.",
-        "description": "Those under the sign of the Tower have nimble hands and a knack for finding fortune.",
-        "bonus": {
-            "price_modifier": {
-                "value": 20,
-                "type": "percent"
-            },
-            "carry_weight": {
-                "value": 50,
-                "type": "flat"
-            },
-            "lockpick_durability": {
-                "value": 40,
-                "type": "percent"
-            },
-            "lockpicking_expertise": {
-                "value": 4,
-                "type": "flat"
-            }
-        },
-        "enhanced_bonus": {
-            "trigger_skills": [
-                "Light Armor",
-                "Heavy Armor",
-                "Block"
-            ],
-            "effects": {
-                "damage_reflect": {
-                    "value": 10,
-                    "type": "percent"
-                }
-            }
-        }
+        "description": "Those under the sign of the Tower have nimble hands and a knack for finding fortune."
     },
     {
         "name": "Serpent",
@@ -386,10 +203,6 @@
             "poison_resistance": {
                 "value": 50,
                 "type": "percent"
-            },
-            "serpent_power": {
-                "value": true,
-                "type": "boolean"
             }
         },
         "enhanced_bonus": {

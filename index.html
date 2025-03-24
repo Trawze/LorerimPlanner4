@@ -1,3 +1,4 @@
+
 <html class="">
               
 <head>
@@ -529,11 +530,11 @@
             <!-- Additional Skill Trees -->
             <div class="flex gap-2 mb-4" id="additional-skills">
                 <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors flex-1 aspect-square" id="traits">
-                    <h3 class="text-center text-amber-500 text-[10px]">Traits</h3>
+                    <h3 class="text-center text-amber-500 text-sm">Traits</h3>
                 </div>
                 
                 <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors flex-1 aspect-square" id="destiny">
-                    <h3 class="text-center text-amber-500 text-[10px]">Destiny</h3>
+                    <h3 class="text-center text-amber-500 text-sm">Destiny</h3>
                 </div>
             </div>
 
@@ -554,13 +555,13 @@
             </div>
 
             <!-- Character Stats -->
-            <div class="bg-gray-800 p-2 rounded-lg text-sm" id="stats-display">
-                <h2 class="text-base font-bold mb-2 text-amber-500">Character Stats</h2>
+            <div class="bg-gray-800 p-1.5 rounded-lg text-xs" id="stats-display">
+                <h2 class="text-base font-bold mb-1.5 text-amber-500">Character Stats</h2>
                 
                 <!-- Base Stats -->
-                <div class="mb-4" id="base-stats">
-                    <h3 class="text-sm mb-1">Base Attributes</h3>
-                    <div class="grid grid-cols-2 gap-2">
+                <div class="mb-3" id="base-stats">
+                    <h3 class="text-xs mb-1">Base Attributes</h3>
+                    <div class="grid grid-cols-2 gap-1.5">
                         <div class="flex items-center">
                             <i class="fa-solid fa-heart text-red-500 mr-2"></i>
                             <span>Health: 100</span>
@@ -577,9 +578,9 @@
                 </div>
 
                 <!-- Resistances -->
-                <div class="mb-4" id="resistances">
-                    <h3 class="text-sm mb-1">Resistances</h3>
-                    <div class="grid grid-cols-2 gap-2">
+                <div class="mb-3" id="resistances">
+                    <h3 class="text-xs mb-1">Resistances</h3>
+                    <div class="grid grid-cols-2 gap-1.5">
                         <div class="flex items-center">
                             <i class="fa-solid fa-fire text-red-500 mr-2"></i>
                             <span>Fire: 0%</span>
@@ -604,13 +605,17 @@
                             <i class="fa-solid fa-skull-crossbones text-emerald-500 mr-2"></i>
                             <span>Poison: 0%</span>
                         </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-shield-halved text-gray-300 mr-2"></i>
+                            <span>Damage: 0%</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Damage Stats -->
                 <div id="damage-stats">
-                    <h3 class="text-sm mb-1">Damage Bonuses</h3>
-                    <div class="grid grid-cols-2 gap-2">
+                    <h3 class="text-xs mb-1">Damage Bonuses</h3>
+                    <div class="grid grid-cols-2 gap-1.5">
                         <div class="flex items-center">
                             <i class="ph ph-sword mr-2"></i>
                             <span>One-handed: 0%</span>
@@ -627,82 +632,88 @@
                             <i class="fa-solid fa-hand-fist mr-2"></i>
                             <span>Unarmed: 0%</span>
                         </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-burst mr-2"></i>
+                            <span>Armor Pen: 0%</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Skill Trees Grid -->
-        <div class="w-3/4 grid grid-cols-6 gap-1.5" id="skill-trees">
-            <!-- Combat Skills -->
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="heavy-armor">
-                <h3 class="text-center text-amber-500 text-[10px]">Heavy Armor</h3>
+        <div class="w-3/4 grid grid-cols-6 gap-1" id="skill-trees">
+            <!-- All skill tree cards -->
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="smithing">
+                <h3 class="text-center text-amber-500 text-xs">Smithing</h3>
+            </div>
+            
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="heavy-armor">
+                <h3 class="text-center text-amber-500 text-xs">Heavy Armor</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="block">
-                <h3 class="text-center text-amber-500 text-[10px]">Block</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="block">
+                <h3 class="text-center text-amber-500 text-xs">Block</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="two-handed">
-                <h3 class="text-center text-amber-500 text-[10px]">Two-Handed</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="two-handed">
+                <h3 class="text-center text-amber-500 text-xs">Two-Handed</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="one-handed">
-                <h3 class="text-center text-amber-500 text-[10px]">One-Handed</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="one-handed">
+                <h3 class="text-center text-amber-500 text-xs">One-Handed</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="marksman">
-                <h3 class="text-center text-amber-500 text-[10px]">Marksman</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="marksman">
+                <h3 class="text-center text-amber-500 text-xs">Marksman</h3>
             </div>
 
-            <!-- Stealth Skills -->
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="evasion">
-                <h3 class="text-center text-amber-500 text-[10px]">Evasion</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="evasion">
+                <h3 class="text-center text-amber-500 text-xs">Evasion</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="sneak">
-                <h3 class="text-center text-amber-500 text-[10px]">Sneak</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="sneak">
+                <h3 class="text-center text-amber-500 text-xs">Sneak</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="finesse">
-                <h3 class="text-center text-amber-500 text-[10px]">Finesse</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="finesse">
+                <h3 class="text-center text-amber-500 text-xs">Finesse</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="wayfarer">
-                <h3 class="text-center text-amber-500 text-[10px]">Wayfarer</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="wayfarer">
+                <h3 class="text-center text-amber-500 text-xs">Wayfarer</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="speech">
-                <h3 class="text-center text-amber-500 text-[10px]">Speech</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="speech">
+                <h3 class="text-center text-amber-500 text-xs">Speech</h3>
             </div>
 
-            <!-- Magic Skills -->
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alchemy">
-                <h3 class="text-center text-amber-500 text-[10px]">Alchemy</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alchemy">
+                <h3 class="text-center text-amber-500 text-xs">Alchemy</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="illusion">
-                <h3 class="text-center text-amber-500 text-[10px]">Illusion</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="illusion">
+                <h3 class="text-center text-amber-500 text-xs">Illusion</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="conjuration">
-                <h3 class="text-center text-amber-500 text-[10px]">Conjuration</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="conjuration">
+                <h3 class="text-center text-amber-500 text-xs">Conjuration</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="destruction">
-                <h3 class="text-center text-amber-500 text-[10px]">Destruction</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="destruction">
+                <h3 class="text-center text-amber-500 text-xs">Destruction</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="restoration">
-                <h3 class="text-center text-amber-500 text-[10px]">Restoration</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="restoration">
+                <h3 class="text-center text-amber-500 text-xs">Restoration</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alteration">
-                <h3 class="text-center text-amber-500 text-[10px]">Alteration</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alteration">
+                <h3 class="text-center text-amber-500 text-xs">Alteration</h3>
             </div>
 
-            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="enchanting">
-                <h3 class="text-center text-amber-500 text-[10px]">Enchanting</h3>
+            <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="enchanting">
+                <h3 class="text-center text-amber-500 text-xs">Enchanting</h3>
             </div>
         </div>
     </div>
