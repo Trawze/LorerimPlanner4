@@ -85,6 +85,27 @@ class TooltipManager {
     }
 
     initializeEventListeners() {
+        // Add this at the beginning of your dropdown initialization code
+        document.addEventListener('click', function(event) {
+            // Get all dropdown contents
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            
+            // If clicking outside any dropdown, close all dropdowns
+            if (!event.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                });
+            } else {
+                // If clicking on a dropdown, close all other dropdowns
+                const currentDropdown = event.target.closest('.dropdown').querySelector('.dropdown-content');
+                dropdowns.forEach(dropdown => {
+                    if (dropdown !== currentDropdown) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
         // Race dropdown events
         this.raceButton.addEventListener('click', () => {
             this.raceDropdownContent.classList.toggle('hidden');
@@ -346,26 +367,209 @@ class TooltipManager {
             return;
         }
 
-        let bonusHtml = '';
+        // Additional hardcoded buffs for birthsigns
+        const additionalBuffs = {
+            'warrior': {
+                'Base Effects': {
+                    'Weapon Damage': '+10%',
+                    'Unarmed Damage': '+10',
+                    'Armor Penetration': '5%'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in One-Handed, Two-Handed, or Archery:',
+                    'effects': {
+                        'Armor Penetration': '10%'
+                    }
+                }
+            },
+            'lady': {
+                'Base Effects': {
+                    'Health Regeneration': '+40%',
+                    'Stamina Regeneration': '+40%',
+                    'Special': 'Run and swim without exhaustion'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Block, Heavy Armor, One-Handed, Smithing, Two-Handed, or Archery:',
+                    'effects': {
+                        'Health Regeneration': '+80%',
+                        'Stamina Regeneration': '+80%'
+                    }
+                }
+            },
+            'lord': {
+                'Base Effects': {
+                    'Armor Rating': '+150',
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Block, Heavy Armor, One-Handed, Smithing, Two-Handed, or Archery:',
+                    'effects': {
+                        'Fire Weakness': 'Removed'
+                    }
+                }
+            },
+            'steed': {
+                'Base Effects': {
+                    'Movement Speed': '+10%',
+                    'Carry Weight': '+25',
+                    'Special': 'Immunity to most movement-reducing effects'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Block, Heavy Armor, One-Handed, Smithing, Two-Handed, or Archery:',
+                    'effects': {
+                        'Stamina Regeneration': '+1 per second'
+                    }
+                }
+            },
+            'mage': {
+                'Base Effects': {
+                    'Spell Effectiveness': '+20%'
+                }
+            },
+            'apprentice': {
+                'Base Effects': {
+                    'Magicka Regeneration': '+300%',
+                }
+            },
+            'atronach': {
+                'Base Effects': {
+                    'Spell Absorption': '+30%',
+                    'Special': [
+                        'Cannot regenerate magicka naturally',
+                    ]
+                }
+            },
+            'ritual': {
+                'Base Effects': {
+                    'Powers': [
+                        'Blessed Fire',
+                        'Dead Horde',
+                        'Salvation'
+                    ]
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Enchanting:',
+                    'effects': {
+                        'Enchanting Effectiveness': '+10%'
+                    }
+                }
+            },
+            'thief': {
+                'Base Effects': {
+                    'Lockpicking': '+30% lockpick durability',
+                    'Pickpocketing': '+30% success chance',
+                    'Stealth': '-30% detection chance',
+                    'Physical Damage Avoidance': '+10%',
+                    'Special': 'Can sneak without proficiency'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Alchemy:',
+                    'effects': {
+                        'Alchemy': '+1 poison dose when crafting'
+                    }
+                }
+            },
+            'lover': {
+                'Base Effects': {
+                    'Stamina Regeneration': '+40%',
+                    'Physical Damage Avoidance': '+25%',
+                    'Speech': '+25 skill',
+                    'Shouts': '-5% cooldown'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Speech:',
+                    'effects': {
+                        'Shouts': '-10% cooldown'
+                    }
+                }
+            },
+            'shadow': {
+                'Base Effects': {
+                    'Stealth': '-50% detection chance',
+                    'Movement Noise': '-30%',
+                    'Special': 'Can sneak without proficiency',
+                    'Powers': 'Moonshadow'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Wayfarer, Finesse, or Sneak:',
+                    'effects': {
+                        'Armor Penetration': '+5%'
+                    }
+                }
+            },
+            'tower': {
+                'Base Effects': {
+                    'Barter': '+20% better prices',
+                    'Carry Weight': '+50',
+                    'Lockpicking': '+40% lockpick durability',
+                    'Lockpicking Expertise': '+4',
+                    'Special': 'Can pick effortless locks in plain sight without detection'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 100 in Light Armor, Heavy Armor, or Block:',
+                    'effects': {
+                        'Damage Reflection': '+10%'
+                    }
+                }
+            },
+            'serpent': {
+                'Base Effects': {
+                    'Special': 'Immune to most paralysis effects',
+                    'Powers': 'Serpent\'s Curse'
+                },
+                'Enhanced Effects': {
+                    'requirements': 'At level 40:',
+                    'effects': {
+                        'Poison Resistance': '+100%',
+                        'Special': 'Serpent\'s Curse deals double damage'
+                    }
+                }
+            },
+        };
+
+        // Combine JSON bonus data with additional buffs
+        let allEffectsHtml = '<div class="mt-2">';
+        allEffectsHtml += '<p class="text-blue-300 mb-1">Base Effects:</p>';
+        
+        // Add bonuses from JSON with better formatting
         if (birthsignInfo.bonus) {
-            bonusHtml = '<div class="mt-2">';
             for (const [stat, details] of Object.entries(birthsignInfo.bonus)) {
-                const formattedStat = stat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                bonusHtml += `<p class="text-green-400">${formattedStat}: ${details.value}${details.type === 'percent' ? '%' : ''}</p>`;
+                // Format the stat name to be more readable
+                let formattedStat = stat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                // Add "Fortify" prefix for certain stats
+                if (['health', 'magicka', 'stamina'].includes(stat)) {
+                    formattedStat = 'Fortify ' + formattedStat;
+                }
+                allEffectsHtml += `<p class="text-green-400">${formattedStat}: +${details.value}${details.type === 'percent' ? '%' : ''}</p>`;
             }
-            bonusHtml += '</div>';
         }
 
-        let enhancedBonusHtml = '';
-        if (birthsignInfo.enhanced_bonus) {
-            enhancedBonusHtml = `
+        // Add additional base effects
+        if (additionalBuffs[birthsign.toLowerCase()]?.['Base Effects']) {
+            for (const [buff, value] of Object.entries(additionalBuffs[birthsign.toLowerCase()]['Base Effects'])) {
+                if (Array.isArray(value)) {
+                    // Handle array of special effects
+                    value.forEach(effect => {
+                        allEffectsHtml += `<p class="text-green-400">${buff}: ${effect}</p>`;
+                    });
+                } else {
+                    // Handle normal effects
+                    allEffectsHtml += `<p class="text-green-400">${buff}: ${value}</p>`;
+                }
+            }
+        }
+        allEffectsHtml += '</div>';
+
+        // Add Enhanced Effects
+        let enhancedEffectsHtml = '';
+        if (additionalBuffs[birthsign.toLowerCase()]?.['Enhanced Effects']) {
+            const enhancedEffects = additionalBuffs[birthsign.toLowerCase()]['Enhanced Effects'];
+            enhancedEffectsHtml = `
                 <div class="mt-2">
-                    <p class="text-blue-400">Enhanced Effects (with skills):</p>
-                    <p class="text-gray-300 text-sm">Trigger Skills: ${birthsignInfo.enhanced_bonus.trigger_skills.join(', ')}</p>
-                    ${Object.entries(birthsignInfo.enhanced_bonus.effects).map(([stat, details]) => {
-                        const formattedStat = stat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                        return `<p class="text-green-400">${formattedStat}: ${details.value}${details.type === 'percent' ? '%' : ''}</p>`;
-                    }).join('')}
+                    <p class="text-blue-300 mb-1">Enhanced Effects:</p>
+                    <p class="text-gray-300 text-sm">${enhancedEffects.requirements}</p>
+                    ${Object.entries(enhancedEffects.effects).map(([buff, value]) => 
+                        `<p class="text-green-400">${buff}: ${value}</p>`
+                    ).join('')}
                 </div>`;
         }
 
@@ -373,8 +577,8 @@ class TooltipManager {
             <h4 class="font-bold text-amber-500 mb-2">${birthsignInfo.name}</h4>
             <p class="text-gray-300 mb-2">${birthsignInfo.description}</p>
             ${birthsignInfo.group ? `<p class="text-blue-300 text-sm mb-2">${birthsignInfo.group}</p>` : ''}
-            ${bonusHtml}
-            ${enhancedBonusHtml}
+            ${allEffectsHtml}
+            ${enhancedEffectsHtml}
         `;
         
         this.birthsignTooltip.classList.remove('hidden');

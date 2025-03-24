@@ -139,28 +139,12 @@
     {
         "name": "Thief",
         "group": "The Thief is the last Guardian Constellation, and her season is the darkest month of Evening Star.",
-        "description": "Those under the sign of the Thief have increased dexterity.",
-        "bonus": {
-            "physical_damage_resistance": {
-                "value": 10,
-                "type": "percent"
-            }
-        }
+        "description": "Those under the sign of the Thief have increased dexterity."
     },
     {
         "name": "Lover",
-        "group": "The Lover is one of the Thief's Charges and her season is Sun's Dawn",
-        "description": "Those under the sign of the Lover have increases agility and natural charm.",
-        "bonus": {
-            "physical_damage_resistance": {
-                "value": 25,
-                "type": "percent"
-            },
-            "speech_skill": {
-                "value": 25,
-                "type": "flat"
-            }
-        }
+        "group": "The Lover is one of the Thief's Charges and her season is Sun's Dawn.",
+        "description": "Those under the sign of the Lover have increased agility and natural charm."
     },
     {
         "name": "Shadow",
@@ -206,9 +190,7 @@
             }
         },
         "enhanced_bonus": {
-            "trigger_skills": [
-                "Block"
-            ],
+            "trigger_level": 40,
             "effects": {
                 "poison_resistance": {
                     "value": 100,
