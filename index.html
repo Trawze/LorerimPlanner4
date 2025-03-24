@@ -1,9 +1,17 @@
-
 <html class="">
               
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -512,6 +520,10 @@
                         <option value="lich">Lich</option>
                     </select>
                 </div>
+
+                <div class="level-input" id="character-level">
+                    <input type="number" min="1" max="100" placeholder="Character Level" class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                </div>
             </div>
 
             <!-- Additional Skill Trees -->
@@ -523,6 +535,22 @@
                 <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors flex-1 aspect-square" id="destiny">
                     <h3 class="text-center text-amber-500 text-[10px]">Destiny</h3>
                 </div>
+            </div>
+
+            <!-- Attribute Points Distribution -->
+            <div class="flex gap-2 mb-4" id="attribute-points">
+                <button class="flex-1 bg-red-900 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors">
+                    <i class="fa-solid fa-heart text-red-500 mr-1"></i>
+                    Health +5
+                </button>
+                <button class="flex-1 bg-blue-900 hover:bg-blue-800 p-1.5 rounded-lg text-xs transition-colors">
+                    <i class="fa-solid fa-droplet text-blue-500 mr-1"></i>
+                    Magicka +5
+                </button>
+                <button class="flex-1 bg-green-900 hover:bg-green-800 p-1.5 rounded-lg text-xs transition-colors">
+                    <i class="fa-solid fa-bolt text-green-500 mr-1"></i>
+                    Stamina +5
+                </button>
             </div>
 
             <!-- Character Stats -->
@@ -584,7 +612,7 @@
                     <h3 class="text-sm mb-1">Damage Bonuses</h3>
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex items-center">
-                            <i class="fa-solid fa-sword mr-2"></i>
+                            <i class="ph ph-sword mr-2"></i>
                             <span>One-handed: 0%</span>
                         </div>
                         <div class="flex items-center">
@@ -592,7 +620,7 @@
                             <span>Two-handed: 0%</span>
                         </div>
                         <div class="flex items-center">
-                            <i class="fa-solid fa-bow-arrow mr-2"></i>
+                            <i class="ph ph-crosshair mr-2"></i>
                             <span>Ranged: 0%</span>
                         </div>
                         <div class="flex items-center">
