@@ -1,0 +1,351 @@
+[
+    {
+        "name": "Argonian",
+        "description": "The reptilian natives of Black Marsh are well-suited for a life of crime and subterfuge. They can breathe underwater and are resistant to disease.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 50,
+            "magicka": 25,
+            "stamina": 0
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 15,
+            "marksman": 10,
+            "evasion": 20,
+            "sneak": 15,
+            "wayfarer": 15,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 20,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 10,
+            "restoration": 15,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Breton",
+        "description": "Natural resistance to magic and a gift for the arcane arts make the people of High Rock formidable mages and enchanting allies.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 25,
+            "magicka": 50,
+            "stamina": 0
+        },
+        "resistances": {
+            "magic": 15
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 10,
+            "marksman": 10,
+            "evasion": 10,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 15,
+            "alchemy": 15,
+            "illusion": 15,
+            "conjuration": 25,
+            "destruction": 10,
+            "restoration": 15,
+            "alteration": 10,
+            "enchanting": 15
+        }
+    },
+    {
+        "name": "Dunmer",
+        "description": "Also known as Dark Elves, the ashen-skinned people of Morrowind are known for their stealth and magic skills. They are naturally resistant to fire.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 0,
+            "magicka": 50,
+            "stamina": 25
+        },
+        "resistances": {
+            "fire": 50
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 20,
+            "marksman": 10,
+            "evasion": 15,
+            "sneak": 15,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 15,
+            "conjuration": 15,
+            "destruction": 20,
+            "restoration": 10,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Altmer",
+        "description": "Also known as High Elves, the tall, golden-skinned people of Summerset Isle are naturally gifted in all forms of magic and magic arts.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 0,
+            "magicka": 75,
+            "stamina": 0
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 10,
+            "marksman": 10,
+            "evasion": 10,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 15,
+            "conjuration": 15,
+            "destruction": 20,
+            "restoration": 15,
+            "alteration": 20,
+            "enchanting": 15
+        }
+    },
+    {
+        "name": "Imperial",
+        "description": "Natives of Cyrodiil, they have proved to be shrewd diplomats and traders. They are skilled with combat and magic.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 25,
+            "magicka": 25,
+            "stamina": 25
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 15,
+            "block": 15,
+            "twoHanded": 10,
+            "oneHanded": 15,
+            "marksman": 10,
+            "evasion": 10,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 35,
+            "alchemy": 10,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 15,
+            "restoration": 20,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Khajiit",
+        "description": "Hailing from the province of Elsweyr, they are intelligent, quick, and agile. They make excellent thieves due to their natural stealth.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 0,
+            "magicka": 0,
+            "stamina": 75
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 15,
+            "marksman": 10,
+            "evasion": 15,
+            "sneak": 25,
+            "wayfarer": 15,
+            "finesse": 15,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 10,
+            "restoration": 10,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Nord",
+        "description": "The tall and fair-haired people of Skyrim are strong, hardy, and natural-born warriors. They are fierce, proud and have a strong resistance to frost.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 50,
+            "magicka": 0,
+            "stamina": 25
+        },
+        "resistances": {
+            "frost": 50
+        },
+        "startingSkills": {
+            "smithing": 20,
+            "heavyArmor": 15,
+            "block": 15,
+            "twoHanded": 20,
+            "oneHanded": 15,
+            "marksman": 10,
+            "evasion": 15,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 10,
+            "restoration": 10,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Orsimer",
+        "description": "The people of the Wrothgarian and Dragontail Mountains, commonly known as Orcs, are renowned for their prowess in battle and their unshakeable endurance.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 75,
+            "magicka": 0,
+            "stamina": 0
+        },
+        "startingSkills": {
+            "smithing": 20,
+            "heavyArmor": 20,
+            "block": 15,
+            "twoHanded": 15,
+            "oneHanded": 15,
+            "marksman": 10,
+            "evasion": 10,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 15,
+            "restoration": 10,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Redguard",
+        "description": "The most naturally talented warriors in Tamriel, the dark-skinned people of Hammerfell have a hardy constitution and natural resistance to poison.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 25,
+            "magicka": 0,
+            "stamina": 50
+        },
+        "startingSkills": {
+            "smithing": 15,
+            "heavyArmor": 10,
+            "block": 15,
+            "twoHanded": 15,
+            "oneHanded": 25,
+            "marksman": 15,
+            "evasion": 15,
+            "sneak": 10,
+            "wayfarer": 10,
+            "finesse": 10,
+            "speech": 10,
+            "alchemy": 10,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 10,
+            "restoration": 10,
+            "alteration": 10,
+            "enchanting": 10
+        }
+    },
+    {
+        "name": "Bosmer",
+        "description": "The Wood Elves are the finest archers in all of Tamriel and are naturally nimble and quick. They have a resistance to disease and poison.",
+        "baseStats": {
+            "health": 100,
+            "magicka": 100,
+            "stamina": 100
+        },
+        "bonusStats": {
+            "health": 0,
+            "magicka": 25,
+            "stamina": 50
+        },
+        "startingSkills": {
+            "smithing": 10,
+            "heavyArmor": 10,
+            "block": 10,
+            "twoHanded": 10,
+            "oneHanded": 10,
+            "marksman": 25,
+            "evasion": 15,
+            "sneak": 15,
+            "wayfarer": 10,
+            "finesse": 15,
+            "speech": 10,
+            "alchemy": 15,
+            "illusion": 10,
+            "conjuration": 10,
+            "destruction": 10,
+            "restoration": 10,
+            "alteration": 15,
+            "enchanting": 10
+        }
+    }
+] 

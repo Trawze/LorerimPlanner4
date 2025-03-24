@@ -1,4 +1,3 @@
-
 <html class="">
               
 <head>
@@ -21,6 +20,7 @@
       };
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="tooltips.js" defer></script>
 
     
 <style>
@@ -319,7 +319,7 @@
               extend: {
                 colors: {
                 ...{"transparent":"transparent","current":"currentColor","black":"#000000","white":"#ffffff","gray":{"50":"#f9fafb","100":"#f3f4f6","200":"#e5e7eb","300":"#d1d5db","400":"#9ca3af","500":"#6b7280","600":"#4b5563","700":"#374151","800":"#1f2937","900":"#111827"},"red":{"50":"#fef2f2","100":"#fee2e2","200":"#fecaca","300":"#fca5a5","400":"#f87171","500":"#ef4444","600":"#dc2626","700":"#b91c1c","800":"#991b1b","900":"#7f1d1d"},"yellow":{"50":"#fffbeb","100":"#fef3c7","200":"#fde68a","300":"#fcd34d","400":"#fbbf24","500":"#f59e0b","600":"#d97706","700":"#b45309","800":"#92400e","900":"#78350f"},"green":{"50":"#ecfdf5","100":"#d1fae5","200":"#a7f3d0","300":"#6ee7b7","400":"#34d399","500":"#10b981","600":"#059669","700":"#047857","800":"#065f46","900":"#064e3b"},"blue":{"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"},"indigo":{"50":"#eef2ff","100":"#e0e7ff","200":"#c7d2fe","300":"#a5b4fc","400":"#818cf8","500":"#6366f1","600":"#4f46e5","700":"#4338ca","800":"#3730a3","900":"#312e81"},"purple":{"50":"#f5f3ff","100":"#ede9fe","200":"#ddd6fe","300":"#c4b5fd","400":"#a78bfa","500":"#8b5cf6","600":"#7c3aed","700":"#6d28d9","800":"#5b21b6","900":"#4c1d95"},"pink":{"50":"#fdf2f8","100":"#fce7f3","200":"#fbcfe8","300":"#f9a8d4","400":"#f472b6","500":"#ec4899","600":"#db2777","700":"#be185d","800":"#9d174d","900":"#831843"}},
-                ...{"primary":{"50":"var(--color-primary-50)","100":"var(--color-primary-100)","200":"var(--color-primary-200)","300":"var(--color-primary-300)","400":"var(--color-primary-400)","500":"var(--color-primary-500)","600":"var(--color-primary-600)","700":"var(--color-primary-700)","800":"var(--color-primary-800)","900":"var(--color-primary-900)","DEFAULT":"var(--color-primary)","focus":"var(--color-primary-focus)","content":"var(--color-primary-content)"},"secondary":{"50":"var(--color-secondary-50)","100":"var(--color-secondary-100)","200":"var(--color-secondary-200)","300":"var(--color-secondary-300)","400":"var(--color-secondary-400)","500":"var(--color-secondary-500)","600":"var(--color-secondary-600)","700":"var(--color-secondary-700)","800":"var(--color-secondary-800)","900":"var(--color-secondary-900)","DEFAULT":"var(--color-secondary)","focus":"var(--color-secondary-focus)","content":"var(--color-secondary-content)"},"accent":{"50":"var(--color-accent-50)","100":"var(--color-accent-100)","200":"var(--color-accent-200)","300":"var(--color-accent-300)","400":"var(--color-accent-400)","500":"var(--color-accent-500)","600":"var(--color-accent-600)","700":"var(--color-accent-700)","800":"var(--color-accent-800)","900":"var(--color-accent-900)","DEFAULT":"var(--color-accent)","focus":"var(--color-accent-focus)","content":"var(--color-accent-content)"},"neutral":{"50":"var(--color-neutral-50)","100":"var(--color-neutral-100)","200":"var(--color-neutral-200)","300":"var(--color-neutral-300)","400":"var(--color-neutral-400)","500":"var(--color-neutral-500)","600":"var(--color-neutral-600)","700":"var(--color-neutral-700)","800":"var(--color-neutral-800)","900":"var(--color-neutral-900)","DEFAULT":"var(--color-neutral)","focus":"var(--color-neutral-focus)","content":"var(--color-neutral-content)"},"info":{"50":"var(--color-info-50)","100":"var(--color-info-100)","200":"var(--color-info-200)","300":"var(--color-info-300)","400":"var(--color-info-400)","500":"var(--color-info-500)","600":"var(--color-info-600)","700":"var(--color-info-700)","800":"var(--color-info-800)","900":"var(--color-info-900)","DEFAULT":"var(--color-info)","focus":"var(--color-info-focus)","content":"var(--color-info-content)"},"success":{"50":"var(--color-success-50)","100":"var(--color-success-100)","200":"var(--color-success-200)","300":"var(--color-success-300)","400":"var(--color-success-400)","500":"var(--color-success-500)","600":"var(--color-success-600)","700":"var(--color-success-700)","800":"var(--color-success-800)","900":"var(--color-success-900)","DEFAULT":"var(--color-success)","focus":"var(--color-success-focus)","content":"var(--color-success-content)"},"warning":{"50":"var(--color-warning-50)","100":"var(--color-warning-100)","200":"var(--color-warning-200)","300":"var(--color-warning-300)","400":"var(--color-warning-400)","500":"var(--color-warning-500)","600":"var(--color-warning-600)","700":"var(--color-warning-700)","800":"var(--color-warning-800)","900":"var(--color-warning-900)","DEFAULT":"var(--color-warning)","focus":"var(--color-warning-focus)","content":"var(--color-warning-content)"},"error":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"},"danger":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"},"failure":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"}},
+                ...{"primary":{"50":"var(--color-primary-50)","100":"var(--color-primary-100)","200":"var(--color-primary-200)","300":"var(--color-primary-300)","400":"var(--color-primary-400)","500":"var(--color-primary-500)","600":"var(--color-primary-600)","700":"var(--color-primary-700)","800":"var(--color-primary-800)","900":"var(--color-primary-900)","DEFAULT":"var(--color-primary)","focus":"var(--color-primary-focus)","content":"var(--color-primary-content)"},"secondary":{"50":"var(--color-secondary-50)","100":"var(--color-secondary-100)","200":"var(--color-secondary-200)","300":"var(--color-secondary-300)","400":"var(--color-secondary-400)","500":"var(--color-secondary-500)","600":"var(--color-secondary-600)","700":"var(--color-secondary-700)","800":"var(--color-secondary-800)","900":"var(--color-secondary-900)","DEFAULT":"var(--color-secondary)","focus":"var(--color-secondary-focus)","content":"var(--color-secondary-content)"},"accent":{"50":"var(--color-accent-50)","100":"var(--color-accent-100)","200":"var(--color-accent-200)","300":"var(--color-accent-300)","400":"var(--color-accent-400)","500":"var(--color-accent-500)","600":"var(--color-accent-600)","700":"var(--color-accent-700)","800":"var(--color-accent-800)","900":"var(--color-accent-900)","DEFAULT":"var(--color-accent)","focus":"var(--color-accent-focus)","content":"var(--color-accent-content)"},"neutral":{"50":"var(--color-neutral-50)","100":"var(--color-neutral-100)","200":"var(--color-neutral-200)","300":"var(--color-neutral-300)","400":"var(--color-neutral-400)","500":"var(--color-neutral-500)","600":"var(--color-neutral-600)","700":"var(--color-neutral-700)","800":"var(--color-neutral-800)","900":"var(--color-neutral-900)","DEFAULT":"var(--color-neutral)","focus":"var(--color-neutral-focus)","content":"var(--color-neutral-content)"},"info":{"50":"var(--color-info-50)","100":"var(--color-info-100)","200":"var(--color-info-200)","300":"var(--color-info-300)","400":"var(--color-info-400)","500":"var(--color-info-500)","600":"var(--color-info-600)","700":"var(--color-info-700)","800":"var(--color-info-800)","900":"var(--color-info-900)","DEFAULT":"var(--color-info)","focus":"var(--color-info-focus)","content":"var(--color-info-content)"},"success":{"50":"var(--color-success-50)","100":"var(--color-success-100)","200":"var(--color-success-200)","300":"var(--color-success-300)","400":"var(--color-success-400)","500":"var(--color-success-500)","600":"var(--color-success-600)","700":"var(--color-success-700)","800":"var(--color-success-800)","900":"var(--color-success-900)","DEFAULT":"var(--color-success)","focus":"var(--color-success-focus)","content":"var(--color-success-content)"},"warning":{"50":"var(--color-warning-50)","100":"var(--color-warning-100)","200":"var(--color-warning-200)","300":"var(--color-warning-300)","400":"var(--color-warning-400)","500":"var(--color-warning-500)","600":"var(--color-warning-600)","700":"var(--color-warning-700)","800":"var(--color-warning-800)","900":"var(--color-warning-900)","DEFAULT":"var(--color-warning)","focus":"var(--color-warning-focus)","content":"var(--color-warning-content)"},"error":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"},"danger":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"}},
                 },
               },
             },
@@ -346,180 +346,715 @@
         <div class="w-1/4" id="character-stats">
             <!-- Dropdown Menus -->
             <div class="space-y-2 mb-4" id="character-choices">
-                <div class="dropdown relative" id="race-dropdown">
-                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
-                        <option>Select Race</option>
-                        <option value="argonian">Argonian</option>
-                        <option value="breton">Breton</option>
-                        <option value="dunmer">Dunmer</option>
-                        <option value="altmer">Altmer</option>
-                        <option value="imperial">Imperial</option>
-                        <option value="khajiit">Khajiit</option>
-                        <option value="nord">Nord</option>
-                        <option value="orsimer">Orsimer</option>
-                        <option value="redguard">Redguard</option>
-                        <option value="bosmer">Bosmer</option>
-                    </select>
+                <div class="dropdown relative group" id="race-dropdown">
+                    <button class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm text-left flex justify-between items-center">
+                        <span class="selected-race">Select Race</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="dropdown-content hidden absolute w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg z-50">
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="argonian">Argonian</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="breton">Breton</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="dunmer">Dunmer</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="altmer">Altmer</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="imperial">Imperial</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="khajiit">Khajiit</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="nord">Nord</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="orsimer">Orsimer</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="redguard">Redguard</div>
+                        <div class="race-option p-1.5 hover:bg-gray-700 cursor-pointer" data-race="bosmer">Bosmer</div>
+                    </div>
                     
                     <!-- Race Tooltips -->
-                    <div class="hidden group-hover:block absolute left-full ml-2 w-64 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" id="race-tooltip">
+                    <div class="hidden absolute left-full ml-2 w-[32rem] p-6 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" id="race-tooltip">
                         <div class="tooltip-argonian hidden">
-                            <h4 class="font-bold text-amber-500">Argonian</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +25 Magicka, +50 Health</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Argonian</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 50</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Stamina: <span class="text-gray-300">100</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 15</p>
+                                        <p>Two-Handed: 10</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                        <p>Evasion: 20</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 15</p>
+                                        <p>Wayfarer: 15</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 20</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 10</p>
+                                        <p>Restoration: 15</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-breton hidden">
-                            <h4 class="font-bold text-amber-500">Breton</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +50 Magicka, +25 Health</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Breton</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 50</span></p>
+                                    <p>Stamina: <span class="text-gray-300">100</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 10</p>
+                                <p>Two-Handed: 10</p>
+                                <p>Marksman: 10</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                <p>Evasion: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                <p>Sneak: 10</p>
+                                <p>Wayfarer: 10</p>
+                                <p>Finesse: 10</p>
+                                <p>Speech: 15</p>
+                                <p>Alchemy: 15</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                <p>Illusion: 15</p>
+                                <p>Conjuration: 25</p>
+                                <p>Destruction: 10</p>
+                                <p>Restoration: 15</p>
+                                <p>Alteration: 10</p>
+                                <p>Enchanting: 15</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-dunmer hidden">
-                            <h4 class="font-bold text-amber-500">Dunmer</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +50 Magicka, +25 Stamina</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Dunmer</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-gray-300">100</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 50</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 25</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 20</p>
+                                <p>Two-Handed: 10</p>
+                                <p>Marksman: 10</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                <p>Evasion: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                <p>Sneak: 15</p>
+                                <p>Wayfarer: 10</p>
+                                <p>Finesse: 10</p>
+                                <p>Speech: 10</p>
+                                <p>Alchemy: 10</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                <p>Illusion: 15</p>
+                                <p>Conjuration: 15</p>
+                                <p>Destruction: 20</p>
+                                <p>Restoration: 10</p>
+                                <p>Alteration: 10</p>
+                                <p>Enchanting: 10</p>
+                            </div>
+                        </div>
+                            </div>
                         </div>
                         <div class="tooltip-altmer hidden">
-                            <h4 class="font-bold text-amber-500">Altmer</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +75 Magicka</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Altmer</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-gray-300">100</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 75</span></p>
+                                    <p>Stamina: <span class="text-gray-300">100</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 10</p>
+                                        <p>Two-Handed: 10</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                        <p>Evasion: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 10</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 10</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 15</p>
+                                        <p>Conjuration: 15</p>
+                                        <p>Destruction: 20</p>
+                                        <p>Restoration: 15</p>
+                                        <p>Alteration: 20</p>
+                                        <p>Enchanting: 15</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-imperial hidden">
-                            <h4 class="font-bold text-amber-500">Imperial</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +25 Magicka, +25 Health, +25 Stamina</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Imperial</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 25</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 15</p>
+                                        <p>Two-Handed: 10</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 15</p>
+                                        <p>Heavy Armor: 15</p>
+                                        <p>Evasion: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 10</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 35</p>
+                                        <p>Alchemy: 10</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 15</p>
+                                        <p>Restoration: 20</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-khajiit hidden">
-                            <h4 class="font-bold text-amber-500">Khajiit</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +75 Stamina</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Khajiit</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-gray-300">100</span></p>
+                                    <p>Magicka: <span class="text-gray-300">100</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 75</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 15</p>
+                                        <p>Two-Handed: 10</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                        <p>Evasion: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 25</p>
+                                        <p>Wayfarer: 15</p>
+                                        <p>Finesse: 15</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 10</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 10</p>
+                                        <p>Restoration: 10</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-nord hidden">
-                            <h4 class="font-bold text-amber-500">Nord</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +50 Health, +25 Stamina</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Nord</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 50</span></p>
+                                    <p>Magicka: <span class="text-gray-300">100</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 25</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 15</p>
+                                        <p>Two-Handed: 20</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 15</p>
+                                        <p>Heavy Armor: 15</p>
+                                        <p>Evasion: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 10</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 10</p>
+                                        <p>Smithing: 20</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 10</p>
+                                        <p>Restoration: 10</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-orsimer hidden">
-                            <h4 class="font-bold text-amber-500">Orsimer</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +75 Health</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Orsimer</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 75</span></p>
+                                    <p>Magicka: <span class="text-gray-300">100</span></p>
+                                    <p>Stamina: <span class="text-gray-300">100</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 15</p>
+                                        <p>Two-Handed: 15</p>
+                                        <p>Marksman: 10</p>
+                                        <p>Block: 15</p>
+                                        <p>Heavy Armor: 20</p>
+                                        <p>Evasion: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 10</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 10</p>
+                                        <p>Smithing: 20</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 15</p>
+                                        <p>Restoration: 10</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-redguard hidden">
-                            <h4 class="font-bold text-amber-500">Redguard</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
-                            <p class="text-sm text-green-400">Bonus: +50 Stamina, +25 Health</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Redguard</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Magicka: <span class="text-gray-300">100</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 50</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 25</p>
+                                        <p>Two-Handed: 15</p>
+                                        <p>Marksman: 15</p>
+                                        <p>Block: 15</p>
+                                        <p>Heavy Armor: 10</p>
+                                        <p>Evasion: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 10</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 10</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 15</p>
+                                        <p>Smithing: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 10</p>
+                                        <p>Restoration: 10</p>
+                                        <p>Alteration: 10</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tooltip-bosmer hidden">
-                            <h4 class="font-bold text-amber-500">Bosmer</h4>
-                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Bosmer</h4>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Health: <span class="text-gray-300">100</span></p>
+                                    <p>Magicka: <span class="text-green-400">100 + 25</span></p>
+                                    <p>Stamina: <span class="text-green-400">100 + 50</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                                <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Combat</p>
+                                        <p>One-Handed: 10</p>
+                                        <p>Two-Handed: 10</p>
+                                        <p>Marksman: 25</p>
+                                        <p>Block: 10</p>
+                                        <p>Heavy Armor: 10</p>
+                                        <p>Evasion: 15</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Stealth</p>
+                                        <p>Sneak: 15</p>
+                                        <p>Wayfarer: 10</p>
+                                        <p>Finesse: 15</p>
+                                        <p>Speech: 10</p>
+                                        <p>Alchemy: 15</p>
+                                        <p>Smithing: 10</p>
+                                    </div>
+                                    <div class="text-gray-300">
+                                        <p class="text-amber-500 mb-1">Magic</p>
+                                        <p>Illusion: 10</p>
+                                        <p>Conjuration: 10</p>
+                                        <p>Destruction: 10</p>
+                                        <p>Restoration: 10</p>
+                                        <p>Alteration: 15</p>
+                                        <p>Enchanting: 10</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="dropdown" id="deity-dropdown">
-                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
-                        <option value="">Choose Deity</option>
-                        
-                        <optgroup label="The Divines">
-                            <option value="akatosh">Akatosh</option>
-                            <option value="arkay">Arkay</option>
-                            <option value="dibella">Dibella</option>
-                            <option value="julianos">Julianos</option>
-                            <option value="kynareth">Kynareth</option>
-                            <option value="mara">Mara</option>
-                            <option value="stendarr">Stendarr</option>
-                            <option value="talos">Talos</option>
-                            <option value="zenithar">Zenithar</option>
-                        </optgroup>
+                <div class="dropdown relative group" id="deity-dropdown">
+                    <button class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm text-left flex justify-between items-center">
+                        <span class="selected-deity">Choose Deity</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="dropdown-content hidden absolute w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg z-50 max-h-60 overflow-y-auto">
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">The Divines</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="akatosh">Akatosh</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="arkay">Arkay</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="dibella">Dibella</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="julianos">Julianos</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="kynareth">Kynareth</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="mara">Mara</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="stendarr">Stendarr</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="talos">Talos</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="zenithar">Zenithar</div>
+                        </div>
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">Daedric Princes</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="azura">Azura</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="boethia">Boethia</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="clavicus-vile">Clavicus Vile</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="hermaeus-mora">Hermaeus Mora</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="hircine">Hircine</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="jyggalag">Jyggalag</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="malacath">Malacath</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="mehrunes-dagon">Mehrunes Dagon</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="mephala">Mephala</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="meridia">Meridia</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="molag-bal">Molag Bal</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="namira">Namira</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="nocturnal">Nocturnal</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="peryite">Peryite</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="sanguine">Sanguine</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="sheogorath">Sheogorath</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="vaermina">Vaermina</div>
+                        </div>
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">Elven Ancestors</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="auriel">Auriel</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="jephre">Jephre</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="magnus">Magnus</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="phynaster">Phynaster</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="syrabane">Syrabane</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="trinimac">Trinimac</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="xarxes">Xarxes</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="zen">Z'en</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="almalexia">Almalexia</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="sotha-sil">Sotha Sil</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="vivec">Vivec</div>
+                        </div>
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">Yokudan Pantheon</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="leki">Leki</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="morwha">Morwha</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="satakal">Satakal</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="tall-papa">Tall Papa</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="hoondling">The HoonDing</div>
+                        </div>
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">Khajiiti Pantheon</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="rajhin">Rajhin</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="riddlethar">Riddle'Thar</div>
+                        </div>
+                        <div class="deity-group">
+                            <div class="p-1.5 bg-gray-700 font-bold">Miscellaneous Deities</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="baan-dar">Baan Dar</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="ebonarm">Ebonarm</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="mannimarco">Mannimarco</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="shor">Shor</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="sithis">Sithis</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="st-alessia">St. Alessia</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="all-maker">The All-Maker</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="hist">The Hist</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="magna-ge">The Magna-Ge</div>
+                            <div class="deity-option p-1.5 hover:bg-gray-700 cursor-pointer" data-deity="old-ways">The Old Ways</div>
+                        </div>
+                    </div>
 
-                        <optgroup label="Daedric Princes">
-                            <option value="azura">Azura</option>
-                            <option value="boethia">Boethia</option>
-                            <option value="clavicus-vile">Clavicus Vile</option>
-                            <option value="hermaeus-mora">Hermaeus Mora</option>
-                            <option value="hircine">Hircine</option>
-                            <option value="jyggalag">Jyggalag</option>
-                            <option value="malacath">Malacath</option>
-                            <option value="mehrunes-dagon">Mehrunes Dagon</option>
-                            <option value="mephala">Mephala</option>
-                            <option value="meridia">Meridia</option>
-                            <option value="molag-bal">Molag Bal</option>
-                            <option value="namira">Namira</option>
-                            <option value="nocturnal">Nocturnal</option>
-                            <option value="peryite">Peryite</option>
-                            <option value="sanguine">Sanguine</option>
-                            <option value="sheogorath">Sheogorath</option>
-                            <option value="vaermina">Vaermina</option>
-                        </optgroup>
-
-                        <optgroup label="Elven Ancestors">
-                            <option value="auriel">Auriel</option>
-                            <option value="jephre">Jephre</option>
-                            <option value="magnus">Magnus</option>
-                            <option value="phynaster">Phynaster</option>
-                            <option value="syrabane">Syrabane</option>
-                            <option value="trinimac">Trinimac</option>
-                            <option value="xarxes">Xarxes</option>
-                            <option value="zen">Z'en</option>
-                            <option value="almalexia">Almalexia</option>
-                            <option value="sotha-sil">Sotha Sil</option>
-                            <option value="vivec">Vivec</option>
-                        </optgroup>
-
-                        <optgroup label="Yokudan Pantheon">
-                            <option value="leki">Leki</option>
-                            <option value="morwha">Morwha</option>
-                            <option value="satakal">Satakal</option>
-                            <option value="tall-papa">Tall Papa</option>
-                            <option value="hoondling">The HoonDing</option>
-                        </optgroup>
-
-                        <optgroup label="Khajiiti Pantheon">
-                            <option value="rajhin">Rajhin</option>
-                            <option value="riddlethar">Riddle'Thar</option>
-                        </optgroup>
-
-                        <optgroup label="Miscellaneous Deities">
-                            <option value="baan-dar">Baan Dar</option>
-                            <option value="ebonarm">Ebonarm</option>
-                            <option value="mannimarco">Mannimarco</option>
-                            <option value="shor">Shor</option>
-                            <option value="sithis">Sithis</option>
-                            <option value="st-alessia">St. Alessia</option>
-                            <option value="all-maker">The All-Maker</option>
-                            <option value="hist">The Hist</option>
-                            <option value="magna-ge">The Magna-Ge</option>
-                            <option value="old-ways">The Old Ways</option>
-                        </optgroup>
-                    </select>
+                    <!-- Deity Tooltips -->
+                    <div class="hidden absolute left-full ml-2 w-80 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" 
+                         id="deity-tooltip"
+                         style="pointer-events: none; top: 0;">
+                        <!-- Tooltip content will be dynamically populated -->
+                    </div>
                 </div>
 
-                <div class="dropdown" id="birthsign-dropdown">
-                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
-                        <option value="">Choose Birthsign</option>
-                        <option value="warrior">Warrior</option>
-                        <option value="lady">Lady</option>
-                        <option value="lord">Lord</option>
-                        <option value="steed">Steed</option>
-                        <option value="mage">Mage</option>
-                        <option value="apprentice">Apprentice</option>
-                        <option value="atronach">Atronach</option>
-                        <option value="ritual">Ritual</option>
-                        <option value="thief">Thief</option>
-                        <option value="lover">Lover</option>
-                        <option value="shadow">Shadow</option>
-                        <option value="tower">Tower</option>
-                        <option value="serpent">Serpent</option>
-                    </select>
+                <div class="dropdown relative group" id="birthsign-dropdown">
+                    <button class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm text-left flex justify-between items-center">
+                        <span class="selected-birthsign">Choose Birthsign</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="dropdown-content hidden absolute w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg z-50">
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="warrior">Warrior</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="lady">Lady</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="lord">Lord</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="steed">Steed</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="mage">Mage</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="apprentice">Apprentice</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="atronach">Atronach</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="ritual">Ritual</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="thief">Thief</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="lover">Lover</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="shadow">Shadow</div>
+                        <div class="birthsign-option p-1.5 hover:bg-gray-700 cursor-pointer" data-birthsign="tower">Tower</div>
+                    </div>
+                    
+                    <!-- Birthsign Tooltip -->
+                    <div class="hidden absolute left-full ml-2 w-80 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" 
+                         id="birthsign-tooltip"
+                         style="pointer-events: none; top: 0;">
+                    </div>
                 </div>
 
-                <div class="dropdown" id="lifepath-dropdown">
-                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
-                        <option value="">Choose Lifepath</option>
-                        <option value="mortal">Mortal</option>
-                        <option value="vampire">Vampire</option>
-                        <option value="werewolf">Werewolf</option>
-                        <option value="lich">Lich</option>
-                    </select>
+                <div class="dropdown relative group" id="lifepath-dropdown">
+                    <button class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm text-left flex justify-between items-center">
+                        <span class="selected-lifepath">Select Lifepath</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="dropdown-content hidden absolute w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg z-50">
+                        <div class="lifepath-option p-1.5 hover:bg-gray-700 cursor-pointer" data-lifepath="mortal">Mortal</div>
+                        <div class="lifepath-option p-1.5 hover:bg-gray-700 cursor-pointer" data-lifepath="vampire">Vampire</div>
+                        <div class="lifepath-option p-1.5 hover:bg-gray-700 cursor-pointer" data-lifepath="werewolf">Werewolf</div>
+                        <div class="lifepath-option p-1.5 hover:bg-gray-700 cursor-pointer" data-lifepath="lich">Lich</div>
+                    </div>
+                    
+                    <!-- Lifepath Tooltips -->
+                    <div class="hidden absolute left-full ml-2 w-96 p-6 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" id="lifepath-tooltip">
+                        <!-- Mortal Tooltip -->
+                        <div class="tooltip-mortal hidden">
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Mortal</h4>
+                            <p class="text-gray-300 mb-4">A normal mortal being, with no supernatural afflictions.</p>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                                <div class="grid grid-cols-2 gap-2 text-sm pl-3 text-gray-300">
+                                    <p>Fire: 0%</p>
+                                    <p>Frost: 0%</p>
+                                    <p>Shock: 0%</p>
+                                    <p>Poison: 0%</p>
+                                    <p>Disease: 0%</p>
+                                    <p>Magic: 0%</p>
+                                </div>
+                            </div>
+                            <div class="text-green-400 text-sm mb-4">
+                                <p class="mb-2">Abilities:</p>
+                                <p class="text-gray-300">None</p>
+                            </div>
+                            <div class="text-red-400 text-sm">
+                                <p class="mb-2">Weaknesses:</p>
+                                <p class="text-gray-300">None</p>
+                            </div>
+                        </div>
+
+                        <!-- Vampire Tooltip -->
+                        <div class="tooltip-vampire hidden">
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Vampire</h4>
+                            <p class="text-gray-300 mb-4">An immortal creature of the night, feeding on the blood of mortals.</p>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                                <div class="grid grid-cols-2 gap-2 text-sm pl-3">
+                                    <p>Fire: <span class="text-red-400">-75%</span></p>
+                                    <p>Frost: <span class="text-green-400">100%</span></p>
+                                    <p>Shock: <span class="text-gray-300">0%</span></p>
+                                    <p>Poison: <span class="text-green-400">100%</span></p>
+                                    <p>Disease: <span class="text-green-400">100%</span></p>
+                                    <p>Magic: <span class="text-gray-300">0%</span></p>
+                                </div>
+                            </div>
+                            <div class="text-green-400 text-sm mb-4">
+                                <p class="mb-2">Abilities:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Night Vision</li>
+                                    <li>Vampiric Drain</li>
+                                    <li>Vampiric Seduction</li>
+                                </ul>
+                            </div>
+                            <div class="text-red-400 text-sm">
+                                <p class="mb-2">Weaknesses:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Sunlight Vulnerability</li>
+                                    <li>Blood Hunger</li>
+                                    <li>Fire Weakness (-75% Fire Resistance)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Werewolf Tooltip -->
+                        <div class="tooltip-werewolf hidden">
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Werewolf</h4>
+                            <p class="text-gray-300 mb-4">A mortal cursed with lycanthropy, able to transform into a powerful beast.</p>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                                <div class="grid grid-cols-2 gap-2 text-sm pl-3">
+                                    <p>Fire: <span class="text-red-400">25%</span></p>
+                                    <p>Frost: <span class="text-gray-300">0%</span></p>
+                                    <p>Shock: <span class="text-gray-300">0%</span></p>
+                                    <p>Poison: <span class="text-green-400">100%</span></p>
+                                    <p>Disease: <span class="text-green-400">100%</span></p>
+                                    <p>Magic: <span class="text-gray-300">0%</span></p>
+                                </div>
+                            </div>
+                            <div class="text-green-400 text-sm mb-4">
+                                <p class="mb-2">Abilities:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Beast Form</li>
+                                    <li>Race Based Buffs</li>
+                                </ul>
+                            </div>
+                            <div class="text-red-400 text-sm">
+                                <p class="mb-2">Weaknesses:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Silver Vulnerability</li>
+                                    <li>Fire Weakness (-25% Fire Resistance)</li>
+                                    <li>Moon Curse</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Lich Tooltip -->
+                        <div class="tooltip-lich hidden">
+                            <h4 class="font-bold text-amber-500 text-lg mb-3">Lich</h4>
+                            <p class="text-gray-300 mb-4">A powerful undead spellcaster who has bound their soul to phylactery.</p>
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                                <div class="grid grid-cols-2 gap-2 text-sm pl-3">
+                                    <p>Fire: <span class="text-red-400">-100%</span></p>
+                                    <p>Frost: <span class="text-green-400">75%</span></p>
+                                    <p>Shock: <span class="text-gray-300">0%</span></p>
+                                    <p>Poison: <span class="text-green-400">100%</span></p>
+                                    <p>Disease: <span class="text-green-400">100%</span></p>
+                                    <p>Magic: <span class="text-green-400">50%</span></p>
+                                </div>
+                            </div>
+                            <div class="text-green-400 text-sm mb-4">
+                                <p class="mb-2">Abilities:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Waterbreathing</li>
+                                    <li>Improved Physical Form</li>
+                                    <li>Unique Spells</li>
+                                </ul>
+                            </div>
+                            <div class="text-red-400 text-sm">
+                                <p class="mb-2">Weaknesses:</p>
+                                <ul class="list-disc list-inside text-gray-300 pl-2">
+                                    <li>Fire Weakness (-100% Fire Resistance)</li>
+                                    <li>Unable to regenerate</li>
+                                    <li>Potions have -50% effect</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="level-input" id="character-level">

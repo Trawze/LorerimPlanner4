@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Mortal",
+        "description": "A normal mortal being, with no supernatural afflictions.",
+        "baseResistances": {
+            "fire": 0,
+            "frost": 0,
+            "shock": 0,
+            "poison": 0,
+            "disease": 0,
+            "magic": 0
+        },
+        "abilities": [],
+        "weaknesses": []
+    },
+    {
+        "name": "Vampire",
+        "description": "An immortal creature of the night, feeding on the blood of mortals.",
+        "baseResistances": {
+            "fire": -75,
+            "frost": 100,
+            "shock": 0,
+            "poison": 100,
+            "disease": 100,
+            "magic": 25
+        },
+        "abilities": [
+            "Night Vision",
+            "Vampiric Drain",
+            "Supernatural Reflexes"
+        ],
+        "weaknesses": [
+            "Sunlight Vulnerability",
+            "Blood Hunger",
+            "Fire Weakness"
+        ]
+    },
+    {
+        "name": "Werewolf",
+        "description": "A mortal cursed with lycanthropy, able to transform into a powerful beast.",
+        "baseResistances": {
+            "fire": 0,
+            "frost": 0,
+            "shock": 0,
+            "poison": 100,
+            "disease": 100,
+            "magic": -25
+        },
+        "abilities": [
+            "Beast Form",
+            "Enhanced Strength",
+            "Predator's Sight"
+        ],
+        "weaknesses": [
+            "Silver Vulnerability",
+            "Magic Weakness",
+            "Moon Rage"
+        ]
+    },
+    {
+        "name": "Lich",
+        "description": "A powerful undead spellcaster who has bound their soul to phylactery.",
+        "baseResistances": {
+            "fire": -100,
+            "frost": 75,
+            "shock": 0,
+            "poison": 100,
+            "disease": 100,
+            "magic": 50
+        },
+        "abilities": [
+            "Immortality",
+            "Enhanced Magicka",
+            "Soul Binding"
+        ],
+        "weaknesses": [
+            "Fire Vulnerability",
+            "Phylactery Dependency",
+            "Undead Weaknesses"
+        ]
+    }
+] 
