@@ -94,6 +94,8 @@ class TooltipManager {
             lifepath: {},
             perks: {},
         };
+
+        this.initializeSkillTrees();
     }
 
     async loadDeityData() {
@@ -836,11 +838,11 @@ class TooltipManager {
 
         // Format the display with base + allocated points, only showing bonus if it exists
         healthValue.innerHTML = baseHealth + 
-            (this.attributePoints.spent.health > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.health}</span>` : '');
+            (this.attributePoints.spent.health > 0 ? ` <span class="text-green-400">+${this.attributePoints.spent.health} (${this.attributePoints.spent.health/5})</span>` : '');
         magickaValue.innerHTML = baseMagicka + 
-            (this.attributePoints.spent.magicka > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.magicka}</span>` : '');
+            (this.attributePoints.spent.magicka > 0 ? ` <span class="text-green-400">+${this.attributePoints.spent.magicka} (${this.attributePoints.spent.magicka/5})</span>` : '');
         staminaValue.innerHTML = baseStamina + 
-            (this.attributePoints.spent.stamina > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.stamina}</span>` : '');
+            (this.attributePoints.spent.stamina > 0 ? ` <span class="text-green-400">+${this.attributePoints.spent.stamina} (${this.attributePoints.spent.stamina/5})</span>` : '');
     }
 
     updateAttributeButtons() {
@@ -943,6 +945,61 @@ class TooltipManager {
             // Update lifepath selection display
             this.selectedLifepathText.textContent = lifepathData.name;
         }
+    }
+
+    initializeSkillTrees() {
+        const skillTreeContainer = document.getElementById('skill-trees');
+        const skillCards = document.querySelectorAll('.skill-tree-card');
+        
+        skillCards.forEach(card => {
+            // Create close button with proper positioning and initial state
+            const closeButton = document.createElement('button');
+            closeButton.className = 'skill-tree-close-btn hidden';
+            closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            card.appendChild(closeButton);
+            
+            // Add click handler for the close button
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('skill-tree-expanded');
+                skillTreeContainer.classList.remove('skill-tree-fullview');
+                closeButton.classList.add('hidden');
+            });
+
+            // Main card click handler
+            card.addEventListener('click', (e) => {
+                // Ignore if clicking the close button
+                if (e.target.closest('.skill-tree-close-btn')) return;
+
+                // Only expand if the card isn't already expanded
+                if (!card.classList.contains('skill-tree-expanded')) {
+                    // Close all other cards first
+                    skillCards.forEach(c => {
+                        const otherCloseButton = c.querySelector('.skill-tree-close-btn');
+                        c.classList.remove('skill-tree-expanded');
+                        if (otherCloseButton) {
+                            otherCloseButton.classList.add('hidden');
+                        }
+                    });
+                    
+                    // Calculate the card's position relative to the container
+                    const rect = card.getBoundingClientRect();
+                    const containerRect = skillTreeContainer.getBoundingClientRect();
+                    
+                    // Calculate the origin point as percentages
+                    const originX = ((rect.left - containerRect.left) / containerRect.width) * 100;
+                    const originY = ((rect.top - containerRect.top) / containerRect.height) * 100;
+                    
+                    // Set the transform origin
+                    card.style.transformOrigin = `${originX}% ${originY}%`;
+                    
+                    // Expand the current card and show its close button
+                    card.classList.add('skill-tree-expanded');
+                    skillTreeContainer.classList.add('skill-tree-fullview');
+                    closeButton.classList.remove('hidden');
+                }
+            });
+        });
     }
 }
 
