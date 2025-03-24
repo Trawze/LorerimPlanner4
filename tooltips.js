@@ -83,11 +83,11 @@ class TooltipManager {
             damage: 0
         };
 
-        // Track sources of resistance bonuses for future perk system
+        // Modify resistance sources to include lifepath
         this.resistanceSources = {
             racial: {},
+            lifepath: {},
             perks: {},
-            // Can add more sources later (equipment, effects, etc.)
         };
     }
 
@@ -369,6 +369,14 @@ class TooltipManager {
 
         this.birthsignDropdown.addEventListener('mouseleave', () => {
             this.hideBirthsignTooltip();
+        });
+
+        // Add lifepath selection listener
+        this.lifepathOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lifepathName = option.getAttribute('data-lifepath');
+                this.updateLifepathStats(lifepathName);
+            });
         });
     }
 
@@ -842,11 +850,24 @@ class TooltipManager {
     }
 
     updateResistances() {
-        // Get all resistance values from different sources
-        const totalResistances = { ...this.resistances };
+        // Reset base resistances
+        const totalResistances = {
+            fire: 0,
+            frost: 0,
+            shock: 0,
+            poison: 0,
+            disease: 0,
+            magic: 0,
+            damage: 0
+        };
 
         // Add racial resistances
         Object.entries(this.resistanceSources.racial).forEach(([type, value]) => {
+            totalResistances[type] = (totalResistances[type] || 0) + value;
+        });
+
+        // Add lifepath resistances
+        Object.entries(this.resistanceSources.lifepath).forEach(([type, value]) => {
             totalResistances[type] = (totalResistances[type] || 0) + value;
         });
 
@@ -855,7 +876,7 @@ class TooltipManager {
             totalResistances[type] = (totalResistances[type] || 0) + value;
         });
 
-        // Update the UI
+        // Update the UI with stacked resistances
         Object.entries(totalResistances).forEach(([type, value]) => {
             const resistanceElement = document.querySelector(`#${type}-resistance`);
             if (resistanceElement) {
@@ -866,6 +887,28 @@ class TooltipManager {
                 resistanceElement.innerHTML = `<span class="${colorClass}">${displayValue}%</span>`;
             }
         });
+    }
+
+    updateLifepathStats(lifepathName) {
+        const lifepathData = this.lifepathData.find(path => 
+            path.name.toLowerCase() === lifepathName.toLowerCase()
+        );
+
+        if (lifepathData) {
+            // Reset lifepath resistances
+            this.resistanceSources.lifepath = {};
+
+            // Apply new lifepath resistances if they exist
+            if (lifepathData.baseResistances) {
+                this.resistanceSources.lifepath = { ...lifepathData.baseResistances };
+            }
+
+            // Update resistance display
+            this.updateResistances();
+
+            // Update lifepath selection display
+            this.selectedLifepathText.textContent = lifepathData.name;
+        }
     }
 }
 

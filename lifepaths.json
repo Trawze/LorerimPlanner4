@@ -18,43 +18,42 @@
         "description": "An immortal creature of the night, feeding on the blood of mortals.",
         "baseResistances": {
             "fire": -75,
-            "frost": 100,
+            "frost": 50,
             "shock": 0,
             "poison": 100,
             "disease": 100,
-            "magic": 25
+            "magic": 0
         },
         "abilities": [
             "Night Vision",
             "Vampiric Drain",
-            "Supernatural Reflexes"
+            "Vampiric Seduction"
         ],
         "weaknesses": [
             "Sunlight Vulnerability",
             "Blood Hunger",
-            "Fire Weakness"
+            "Fire Weakness (-75% Fire Resistance)"
         ]
     },
     {
         "name": "Werewolf",
         "description": "A mortal cursed with lycanthropy, able to transform into a powerful beast.",
         "baseResistances": {
-            "fire": 0,
+            "fire": -25,
             "frost": 0,
             "shock": 0,
             "poison": 100,
             "disease": 100,
-            "magic": -25
+            "magic": 0
         },
         "abilities": [
             "Beast Form",
-            "Enhanced Strength",
-            "Predator's Sight"
+            "Race Based Buffs"
         ],
         "weaknesses": [
             "Silver Vulnerability",
-            "Magic Weakness",
-            "Moon Rage"
+            "Fire Weakness (-25% Fire Resistance)",
+            "Moon Curse"
         ]
     },
     {
@@ -62,21 +61,21 @@
         "description": "A powerful undead spellcaster who has bound their soul to phylactery.",
         "baseResistances": {
             "fire": -100,
-            "frost": 75,
+            "frost": 50,
             "shock": 0,
             "poison": 100,
             "disease": 100,
-            "magic": 50
+            "magic": 0
         },
         "abilities": [
-            "Immortality",
-            "Enhanced Magicka",
-            "Soul Binding"
+            "Waterbreathing",
+            "Improved Physical Form",
+            "Unique Spells"
         ],
         "weaknesses": [
-            "Fire Vulnerability",
-            "Phylactery Dependency",
-            "Undead Weaknesses"
+            "Fire Weakness (-100% Fire Resistance)",
+            "Unable to regenerate",
+            "Potions have -50% effect"
         ]
     }
 ] 
