@@ -7,6 +7,9 @@ Dynamic stat adjustments based on selected race, deity, and birthsign.
 Build management: save, load, and share character builds.
 
 
-Technologies Used
+Technologies Used:
 HTML, CSS, JavaScript
 GitHub Pages for hosting
+
+Future plans:
+Complete overview of spells, unique weapons and armors featured in Lorerim.
