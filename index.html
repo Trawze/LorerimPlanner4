@@ -1,0 +1,684 @@
+
+<html class="">
+              
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest', // Options: 'nest', 'remove', 'replace'
+      };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+<style>
+  * {
+    font-family: "Inter", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+    
+<style>
+  .highlighted-section {
+    outline: 2px solid #3F20FB;
+    background-color: rgba(63, 32, 251, 0.1);
+  }
+
+  .edit-button {
+    position: absolute;
+    z-index: 1000;
+  }
+</style>
+
+    
+<style>
+   :root {
+          /* Base colors */
+          --color-base: #ffffff;
+          --color-base-50: #f9fafb;
+          --color-base-100: #f3f4f6;
+          --color-base-200: #e5e7eb;
+          --color-base-300: #d1d5db;
+          --color-base-400: #9ca3af;
+          --color-base-500: #6b7280;
+          --color-base-600: #4b5563;  
+          --color-base-700: #374151;
+          --color-base-800: #1f2937;  
+          --color-base-900: #111827;
+          --color-base-content: #1f2937;
+
+          /* Primary colors */
+          --color-primary: #3b82f6;
+          --color-primary-50: #eff6ff;
+          --color-primary-100: #dbeafe;
+          --color-primary-200: #bfdbfe;
+          --color-primary-300: #93c5fd;
+          --color-primary-400: #60a5fa;
+          --color-primary-500: #3b82f6;
+          --color-primary-600: #2563eb;
+          --color-primary-700: #1d4ed8;
+          --color-primary-800: #1e40af;
+          --color-primary-900: #1e3a8a;
+          --color-primary-focus: #2563eb;
+          --color-primary-content: #ffffff;
+
+          /* Secondary colors */
+          --color-secondary: #8b5cf6;
+          --color-secondary-50: #f5f3ff;
+          --color-secondary-100: #ede9fe;
+          --color-secondary-200: #ddd6fe;
+          --color-secondary-300: #c4b5fd;
+          --color-secondary-400: #a78bfa;
+          --color-secondary-500: #8b5cf6;
+          --color-secondary-600: #7c3aed;
+          --color-secondary-700: #6d28d9;
+          --color-secondary-800: #5b21b6;
+          --color-secondary-900: #4c1d95;
+          --color-secondary-focus: #7c3aed;
+          --color-secondary-content: #ffffff;
+
+          /* Accent colors */
+          --color-accent: #f472b6;
+          --color-accent-50: #fdf2f8;
+          --color-accent-100: #fce7f3;
+          --color-accent-200: #fbcfe8;
+          --color-accent-300: #f9a8d4;
+          --color-accent-400: #f472b6;
+          --color-accent-500: #ec4899;
+          --color-accent-600: #db2777;
+          --color-accent-700: #be185d;
+          --color-accent-800: #9d174d;
+          --color-accent-900: #831843;
+          --color-accent-focus: #db2777;
+          --color-accent-content: #ffffff;
+
+          /* Neutral colors */
+          --color-neutral: #6b7280;
+          --color-neutral-50: #f9fafb;
+          --color-neutral-100: #f3f4f6;
+          --color-neutral-200: #e5e7eb;
+          --color-neutral-300: #d1d5db;
+          --color-neutral-400: #9ca3af;
+          --color-neutral-500: #6b7280;
+          --color-neutral-600: #4b5563;
+          --color-neutral-700: #374151;
+          --color-neutral-800: #1f2937;
+          --color-neutral-900: #111827;
+          --color-neutral-focus: #4b5563;
+          --color-neutral-content: #ffffff;
+
+          /* Info colors */
+          --color-info: #3b82f6;
+          --color-info-50: #eff6ff;
+          --color-info-100: #dbeafe;
+          --color-info-200: #bfdbfe;
+          --color-info-300: #93c5fd;
+          --color-info-400: #60a5fa;
+          --color-info-500: #3b82f6;
+          --color-info-600: #2563eb;
+          --color-info-700: #1d4ed8;
+          --color-info-800: #1e40af;
+          --color-info-900: #1e3a8a;
+          --color-info-focus: #2563eb;
+          --color-info-content: #ffffff;
+
+          /* Success colors */
+          --color-success: #10b981;
+          --color-success-50: #ecfdf5;
+          --color-success-100: #d1fae5;
+          --color-success-200: #a7f3d0;
+          --color-success-300: #6ee7b7;
+          --color-success-400: #34d399;
+          --color-success-500: #10b981;
+          --color-success-600: #059669;
+          --color-success-700: #047857;
+          --color-success-800: #065f46;
+          --color-success-900: #064e3b;
+          --color-success-focus: #059669;
+          --color-success-content: #ffffff;
+
+          /* Warning colors */
+          --color-warning: #f59e0b;
+          --color-warning-50: #fffbeb;
+          --color-warning-100: #fef3c7;
+          --color-warning-200: #fde68a;
+          --color-warning-300: #fcd34d;
+          --color-warning-400: #fbbf24;
+          --color-warning-500: #f59e0b;
+          --color-warning-600: #d97706;
+          --color-warning-700: #b45309;
+          --color-warning-800: #92400e;
+          --color-warning-900: #78350f;
+          --color-warning-focus: #d97706;
+          --color-warning-content: #ffffff;
+
+          /* Error colors */
+          --color-error: #ef4444;
+          --color-error-50: #fef2f2;
+          --color-error-100: #fee2e2;
+          --color-error-200: #fecaca;
+          --color-error-300: #fca5a5;
+          --color-error-400: #f87171;
+          --color-error-500: #ef4444;
+          --color-error-600: #dc2626;
+          --color-error-700: #b91c1c;
+          --color-error-800: #991b1b;
+          --color-error-900: #7f1d1d;
+          --color-error-focus: #dc2626;
+          --color-error-content: #ffffff;
+        }
+</style>
+
+    
+<style>
+/* Dark theme */
+        .dark {
+          /* Base colors */
+          --color-base: #1f2937;
+          --color-base-50: #111827;
+          --color-base-100: #1f2937;
+          --color-base-200: #374151;
+          --color-base-300: #4b5563;
+          --color-base-400: #6b7280;
+          --color-base-500: #9ca3af;
+          --color-base-600: #d1d5db;
+          --color-base-700: #e5e7eb;
+          --color-base-800: #f3f4f6;
+          --color-base-900: #f9fafb;
+          --color-base-content: #f9fafb;
+
+          /* Primary colors */
+          --color-primary: #60a5fa;
+          --color-primary-50: #1e3a8a;
+          --color-primary-100: #1e40af;
+          --color-primary-200: #1d4ed8;
+          --color-primary-300: #2563eb;
+          --color-primary-400: #3b82f6;
+          --color-primary-500: #60a5fa;
+          --color-primary-600: #93c5fd;
+          --color-primary-700: #bfdbfe;
+          --color-primary-800: #dbeafe;
+          --color-primary-900: #eff6ff;
+          --color-primary-focus: #3b82f6;
+          --color-primary-content: #1f2937;
+
+          /* Secondary colors */
+          --color-secondary: #a78bfa;
+          --color-secondary-50: #4c1d95;
+          --color-secondary-100: #5b21b6;
+          --color-secondary-200: #6d28d9;
+          --color-secondary-300: #7c3aed;
+          --color-secondary-400: #8b5cf6;
+          --color-secondary-500: #a78bfa;
+          --color-secondary-600: #c4b5fd;
+          --color-secondary-700: #ddd6fe;
+          --color-secondary-800: #ede9fe;
+          --color-secondary-900: #f5f3ff;
+          --color-secondary-focus: #8b5cf6;
+          --color-secondary-content: #1f2937;
+
+          /* Accent colors */
+          --color-accent: #f472b6;
+          --color-accent-50: #831843;
+          --color-accent-100: #9d174d;
+          --color-accent-200: #be185d;
+          --color-accent-300: #db2777;
+          --color-accent-400: #ec4899;
+          --color-accent-500: #f472b6;
+          --color-accent-600: #f9a8d4;
+          --color-accent-700: #fbcfe8;
+          --color-accent-800: #fce7f3;
+          --color-accent-900: #fdf2f8;
+          --color-accent-focus: #ec4899;
+          --color-accent-content: #1f2937;
+
+          /* Neutral colors remain the same as light theme */
+
+          /* Info colors */
+          --color-info: #60a5fa;
+          --color-info-50: #1e3a8a;
+          --color-info-100: #1e40af;
+          --color-info-200: #1d4ed8;
+          --color-info-300: #2563eb;
+          --color-info-400: #3b82f6;
+          --color-info-500: #60a5fa;
+          --color-info-600: #93c5fd;
+          --color-info-700: #bfdbfe;
+          --color-info-800: #dbeafe;
+          --color-info-900: #eff6ff;
+          --color-info-focus: #3b82f6;
+          --color-info-content: #1f2937;
+
+          /* Success colors */
+          --color-success: #34d399;
+          --color-success-50: #064e3b;
+          --color-success-100: #065f46;
+          --color-success-200: #047857;
+          --color-success-300: #059669;
+          --color-success-400: #10b981;
+          --color-success-500: #34d399;
+          --color-success-600: #6ee7b7;
+          --color-success-700: #a7f3d0;
+          --color-success-800: #d1fae5;
+          --color-success-900: #ecfdf5;
+          --color-success-focus: #10b981;
+          --color-success-content: #1f2937;
+
+          /* Warning colors */
+          --color-warning: #fbbf24;
+          --color-warning-50: #78350f;
+          --color-warning-100: #92400e;
+          --color-warning-200: #b45309;
+          --color-warning-300: #d97706;
+          --color-warning-400: #f59e0b;
+          --color-warning-500: #fbbf24;
+          --color-warning-600: #fcd34d;
+          --color-warning-700: #fde68a;
+          --color-warning-800: #fef3c7;
+          --color-warning-900: #fffbeb;
+          --color-warning-focus: #f59e0b;
+          --color-warning-content: #1f2937;
+
+          /* Error colors */
+          --color-error: #f87171;
+          --color-error-50: #7f1d1d;
+          --color-error-100: #991b1b;
+          --color-error-200: #b91c1c;
+          --color-error-300: #dc2626;
+          --color-error-400: #ef4444;
+          --color-error-500: #f87171;
+          --color-error-600: #fca5a5;
+          --color-error-700: #fecaca;
+          --color-error-800: #fee2e2;
+          --color-error-900: #fef2f2;
+          --color-error-focus: #ef4444;
+          --color-error-content: #1f2937;
+        }
+</style>
+
+    
+  <script>
+        tailwind.config = {
+            theme: {
+              extend: {
+                colors: {
+                ...{"transparent":"transparent","current":"currentColor","black":"#000000","white":"#ffffff","gray":{"50":"#f9fafb","100":"#f3f4f6","200":"#e5e7eb","300":"#d1d5db","400":"#9ca3af","500":"#6b7280","600":"#4b5563","700":"#374151","800":"#1f2937","900":"#111827"},"red":{"50":"#fef2f2","100":"#fee2e2","200":"#fecaca","300":"#fca5a5","400":"#f87171","500":"#ef4444","600":"#dc2626","700":"#b91c1c","800":"#991b1b","900":"#7f1d1d"},"yellow":{"50":"#fffbeb","100":"#fef3c7","200":"#fde68a","300":"#fcd34d","400":"#fbbf24","500":"#f59e0b","600":"#d97706","700":"#b45309","800":"#92400e","900":"#78350f"},"green":{"50":"#ecfdf5","100":"#d1fae5","200":"#a7f3d0","300":"#6ee7b7","400":"#34d399","500":"#10b981","600":"#059669","700":"#047857","800":"#065f46","900":"#064e3b"},"blue":{"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"},"indigo":{"50":"#eef2ff","100":"#e0e7ff","200":"#c7d2fe","300":"#a5b4fc","400":"#818cf8","500":"#6366f1","600":"#4f46e5","700":"#4338ca","800":"#3730a3","900":"#312e81"},"purple":{"50":"#f5f3ff","100":"#ede9fe","200":"#ddd6fe","300":"#c4b5fd","400":"#a78bfa","500":"#8b5cf6","600":"#7c3aed","700":"#6d28d9","800":"#5b21b6","900":"#4c1d95"},"pink":{"50":"#fdf2f8","100":"#fce7f3","200":"#fbcfe8","300":"#f9a8d4","400":"#f472b6","500":"#ec4899","600":"#db2777","700":"#be185d","800":"#9d174d","900":"#831843"}},
+                ...{"primary":{"50":"var(--color-primary-50)","100":"var(--color-primary-100)","200":"var(--color-primary-200)","300":"var(--color-primary-300)","400":"var(--color-primary-400)","500":"var(--color-primary-500)","600":"var(--color-primary-600)","700":"var(--color-primary-700)","800":"var(--color-primary-800)","900":"var(--color-primary-900)","DEFAULT":"var(--color-primary)","focus":"var(--color-primary-focus)","content":"var(--color-primary-content)"},"secondary":{"50":"var(--color-secondary-50)","100":"var(--color-secondary-100)","200":"var(--color-secondary-200)","300":"var(--color-secondary-300)","400":"var(--color-secondary-400)","500":"var(--color-secondary-500)","600":"var(--color-secondary-600)","700":"var(--color-secondary-700)","800":"var(--color-secondary-800)","900":"var(--color-secondary-900)","DEFAULT":"var(--color-secondary)","focus":"var(--color-secondary-focus)","content":"var(--color-secondary-content)"},"accent":{"50":"var(--color-accent-50)","100":"var(--color-accent-100)","200":"var(--color-accent-200)","300":"var(--color-accent-300)","400":"var(--color-accent-400)","500":"var(--color-accent-500)","600":"var(--color-accent-600)","700":"var(--color-accent-700)","800":"var(--color-accent-800)","900":"var(--color-accent-900)","DEFAULT":"var(--color-accent)","focus":"var(--color-accent-focus)","content":"var(--color-accent-content)"},"neutral":{"50":"var(--color-neutral-50)","100":"var(--color-neutral-100)","200":"var(--color-neutral-200)","300":"var(--color-neutral-300)","400":"var(--color-neutral-400)","500":"var(--color-neutral-500)","600":"var(--color-neutral-600)","700":"var(--color-neutral-700)","800":"var(--color-neutral-800)","900":"var(--color-neutral-900)","DEFAULT":"var(--color-neutral)","focus":"var(--color-neutral-focus)","content":"var(--color-neutral-content)"},"info":{"50":"var(--color-info-50)","100":"var(--color-info-100)","200":"var(--color-info-200)","300":"var(--color-info-300)","400":"var(--color-info-400)","500":"var(--color-info-500)","600":"var(--color-info-600)","700":"var(--color-info-700)","800":"var(--color-info-800)","900":"var(--color-info-900)","DEFAULT":"var(--color-info)","focus":"var(--color-info-focus)","content":"var(--color-info-content)"},"success":{"50":"var(--color-success-50)","100":"var(--color-success-100)","200":"var(--color-success-200)","300":"var(--color-success-300)","400":"var(--color-success-400)","500":"var(--color-success-500)","600":"var(--color-success-600)","700":"var(--color-success-700)","800":"var(--color-success-800)","900":"var(--color-success-900)","DEFAULT":"var(--color-success)","focus":"var(--color-success-focus)","content":"var(--color-success-content)"},"warning":{"50":"var(--color-warning-50)","100":"var(--color-warning-100)","200":"var(--color-warning-200)","300":"var(--color-warning-300)","400":"var(--color-warning-400)","500":"var(--color-warning-500)","600":"var(--color-warning-600)","700":"var(--color-warning-700)","800":"var(--color-warning-800)","900":"var(--color-warning-900)","DEFAULT":"var(--color-warning)","focus":"var(--color-warning-focus)","content":"var(--color-warning-content)"},"error":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"},"danger":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"},"failure":{"50":"var(--color-error-50)","100":"var(--color-error-100)","200":"var(--color-error-200)","300":"var(--color-error-300)","400":"var(--color-error-400)","500":"var(--color-error-500)","600":"var(--color-error-600)","700":"var(--color-error-700)","800":"var(--color-error-800)","900":"var(--color-error-900)","DEFAULT":"var(--color-error)","focus":"var(--color-error-focus)","content":"var(--color-error-content)"}},
+                },
+              },
+            },
+            variants: {
+              extend: {
+                backgroundColor: ['active', 'group-hover'],
+                textColor: ['active', 'group-hover'],
+              },
+            },
+            plugins: [],
+          };
+  </script>
+
+</head>
+
+              <body class="h-full text-base-content">
+                <div class="min-h-screen bg-gray-900 text-white p-4" id="skyrim-planner">
+    <header id="header" class="mb-4">
+        <h1 class="text-2xl font-bold text-amber-500">Lorerim Character Planner</h1>
+    </header>
+
+    <div class="flex gap-3" id="main-content">
+        <!-- Left Sidebar -->
+        <div class="w-1/4" id="character-stats">
+            <!-- Dropdown Menus -->
+            <div class="space-y-2 mb-4" id="character-choices">
+                <div class="dropdown relative" id="race-dropdown">
+                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                        <option>Select Race</option>
+                        <option value="argonian">Argonian</option>
+                        <option value="breton">Breton</option>
+                        <option value="dunmer">Dunmer</option>
+                        <option value="altmer">Altmer</option>
+                        <option value="imperial">Imperial</option>
+                        <option value="khajiit">Khajiit</option>
+                        <option value="nord">Nord</option>
+                        <option value="orsimer">Orsimer</option>
+                        <option value="redguard">Redguard</option>
+                        <option value="bosmer">Bosmer</option>
+                    </select>
+                    
+                    <!-- Race Tooltips -->
+                    <div class="hidden group-hover:block absolute left-full ml-2 w-64 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700 z-50" id="race-tooltip">
+                        <div class="tooltip-argonian hidden">
+                            <h4 class="font-bold text-amber-500">Argonian</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +25 Magicka, +50 Health</p>
+                        </div>
+                        <div class="tooltip-breton hidden">
+                            <h4 class="font-bold text-amber-500">Breton</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +50 Magicka, +25 Health</p>
+                        </div>
+                        <div class="tooltip-dunmer hidden">
+                            <h4 class="font-bold text-amber-500">Dunmer</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +50 Magicka, +25 Stamina</p>
+                        </div>
+                        <div class="tooltip-altmer hidden">
+                            <h4 class="font-bold text-amber-500">Altmer</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +75 Magicka</p>
+                        </div>
+                        <div class="tooltip-imperial hidden">
+                            <h4 class="font-bold text-amber-500">Imperial</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +25 Magicka, +25 Health, +25 Stamina</p>
+                        </div>
+                        <div class="tooltip-khajiit hidden">
+                            <h4 class="font-bold text-amber-500">Khajiit</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +75 Stamina</p>
+                        </div>
+                        <div class="tooltip-nord hidden">
+                            <h4 class="font-bold text-amber-500">Nord</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +50 Health, +25 Stamina</p>
+                        </div>
+                        <div class="tooltip-orsimer hidden">
+                            <h4 class="font-bold text-amber-500">Orsimer</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +75 Health</p>
+                        </div>
+                        <div class="tooltip-redguard hidden">
+                            <h4 class="font-bold text-amber-500">Redguard</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                            <p class="text-sm text-green-400">Bonus: +50 Stamina, +25 Health</p>
+                        </div>
+                        <div class="tooltip-bosmer hidden">
+                            <h4 class="font-bold text-amber-500">Bosmer</h4>
+                            <p class="text-sm mb-2">Base: 100 Health, 100 Magicka, 100 Stamina</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown" id="deity-dropdown">
+                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                        <option value="">Choose Deity</option>
+                        
+                        <optgroup label="The Divines">
+                            <option value="akatosh">Akatosh</option>
+                            <option value="arkay">Arkay</option>
+                            <option value="dibella">Dibella</option>
+                            <option value="julianos">Julianos</option>
+                            <option value="kynareth">Kynareth</option>
+                            <option value="mara">Mara</option>
+                            <option value="stendarr">Stendarr</option>
+                            <option value="talos">Talos</option>
+                            <option value="zenithar">Zenithar</option>
+                        </optgroup>
+
+                        <optgroup label="Daedric Princes">
+                            <option value="azura">Azura</option>
+                            <option value="boethia">Boethia</option>
+                            <option value="clavicus-vile">Clavicus Vile</option>
+                            <option value="hermaeus-mora">Hermaeus Mora</option>
+                            <option value="hircine">Hircine</option>
+                            <option value="jyggalag">Jyggalag</option>
+                            <option value="malacath">Malacath</option>
+                            <option value="mehrunes-dagon">Mehrunes Dagon</option>
+                            <option value="mephala">Mephala</option>
+                            <option value="meridia">Meridia</option>
+                            <option value="molag-bal">Molag Bal</option>
+                            <option value="namira">Namira</option>
+                            <option value="nocturnal">Nocturnal</option>
+                            <option value="peryite">Peryite</option>
+                            <option value="sanguine">Sanguine</option>
+                            <option value="sheogorath">Sheogorath</option>
+                            <option value="vaermina">Vaermina</option>
+                        </optgroup>
+
+                        <optgroup label="Elven Ancestors">
+                            <option value="auriel">Auriel</option>
+                            <option value="jephre">Jephre</option>
+                            <option value="magnus">Magnus</option>
+                            <option value="phynaster">Phynaster</option>
+                            <option value="syrabane">Syrabane</option>
+                            <option value="trinimac">Trinimac</option>
+                            <option value="xarxes">Xarxes</option>
+                            <option value="zen">Z'en</option>
+                            <option value="almalexia">Almalexia</option>
+                            <option value="sotha-sil">Sotha Sil</option>
+                            <option value="vivec">Vivec</option>
+                        </optgroup>
+
+                        <optgroup label="Yokudan Pantheon">
+                            <option value="leki">Leki</option>
+                            <option value="morwha">Morwha</option>
+                            <option value="satakal">Satakal</option>
+                            <option value="tall-papa">Tall Papa</option>
+                            <option value="hoondling">The HoonDing</option>
+                        </optgroup>
+
+                        <optgroup label="Khajiiti Pantheon">
+                            <option value="rajhin">Rajhin</option>
+                            <option value="riddlethar">Riddle'Thar</option>
+                        </optgroup>
+
+                        <optgroup label="Miscellaneous Deities">
+                            <option value="baan-dar">Baan Dar</option>
+                            <option value="ebonarm">Ebonarm</option>
+                            <option value="mannimarco">Mannimarco</option>
+                            <option value="shor">Shor</option>
+                            <option value="sithis">Sithis</option>
+                            <option value="st-alessia">St. Alessia</option>
+                            <option value="all-maker">The All-Maker</option>
+                            <option value="hist">The Hist</option>
+                            <option value="magna-ge">The Magna-Ge</option>
+                            <option value="old-ways">The Old Ways</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="dropdown" id="birthsign-dropdown">
+                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                        <option value="">Choose Birthsign</option>
+                        <option value="warrior">Warrior</option>
+                        <option value="lady">Lady</option>
+                        <option value="lord">Lord</option>
+                        <option value="steed">Steed</option>
+                        <option value="mage">Mage</option>
+                        <option value="apprentice">Apprentice</option>
+                        <option value="atronach">Atronach</option>
+                        <option value="ritual">Ritual</option>
+                        <option value="thief">Thief</option>
+                        <option value="lover">Lover</option>
+                        <option value="shadow">Shadow</option>
+                        <option value="tower">Tower</option>
+                        <option value="serpent">Serpent</option>
+                    </select>
+                </div>
+
+                <div class="dropdown" id="lifepath-dropdown">
+                    <select class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                        <option value="">Choose Lifepath</option>
+                        <option value="mortal">Mortal</option>
+                        <option value="vampire">Vampire</option>
+                        <option value="werewolf">Werewolf</option>
+                        <option value="lich">Lich</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Additional Skill Trees -->
+            <div class="flex gap-2 mb-4" id="additional-skills">
+                <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors flex-1 aspect-square" id="traits">
+                    <h3 class="text-center text-amber-500 text-[10px]">Traits</h3>
+                </div>
+                
+                <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors flex-1 aspect-square" id="destiny">
+                    <h3 class="text-center text-amber-500 text-[10px]">Destiny</h3>
+                </div>
+            </div>
+
+            <!-- Character Stats -->
+            <div class="bg-gray-800 p-2 rounded-lg text-sm" id="stats-display">
+                <h2 class="text-base font-bold mb-2 text-amber-500">Character Stats</h2>
+                
+                <!-- Base Stats -->
+                <div class="mb-4" id="base-stats">
+                    <h3 class="text-sm mb-1">Base Attributes</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-heart text-red-500 mr-2"></i>
+                            <span>Health: 100</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-droplet text-blue-500 mr-2"></i>
+                            <span>Magicka: 100</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bolt text-green-500 mr-2"></i>
+                            <span>Stamina: 100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resistances -->
+                <div class="mb-4" id="resistances">
+                    <h3 class="text-sm mb-1">Resistances</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-fire text-red-500 mr-2"></i>
+                            <span>Fire: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-snowflake text-blue-300 mr-2"></i>
+                            <span>Frost: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bolt-lightning text-yellow-500 mr-2"></i>
+                            <span>Shock: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-star text-purple-500 mr-2"></i>
+                            <span>Magic: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-virus text-green-500 mr-2"></i>
+                            <span>Disease: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-skull-crossbones text-emerald-500 mr-2"></i>
+                            <span>Poison: 0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Damage Stats -->
+                <div id="damage-stats">
+                    <h3 class="text-sm mb-1">Damage Bonuses</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-sword mr-2"></i>
+                            <span>One-handed: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-hammer mr-2"></i>
+                            <span>Two-handed: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bow-arrow mr-2"></i>
+                            <span>Ranged: 0%</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-hand-fist mr-2"></i>
+                            <span>Unarmed: 0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Trees Grid -->
+        <div class="w-3/4 grid grid-cols-6 gap-1.5" id="skill-trees">
+            <!-- Combat Skills -->
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="heavy-armor">
+                <h3 class="text-center text-amber-500 text-[10px]">Heavy Armor</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="block">
+                <h3 class="text-center text-amber-500 text-[10px]">Block</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="two-handed">
+                <h3 class="text-center text-amber-500 text-[10px]">Two-Handed</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="one-handed">
+                <h3 class="text-center text-amber-500 text-[10px]">One-Handed</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="marksman">
+                <h3 class="text-center text-amber-500 text-[10px]">Marksman</h3>
+            </div>
+
+            <!-- Stealth Skills -->
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="evasion">
+                <h3 class="text-center text-amber-500 text-[10px]">Evasion</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="sneak">
+                <h3 class="text-center text-amber-500 text-[10px]">Sneak</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="finesse">
+                <h3 class="text-center text-amber-500 text-[10px]">Finesse</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="wayfarer">
+                <h3 class="text-center text-amber-500 text-[10px]">Wayfarer</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="speech">
+                <h3 class="text-center text-amber-500 text-[10px]">Speech</h3>
+            </div>
+
+            <!-- Magic Skills -->
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alchemy">
+                <h3 class="text-center text-amber-500 text-[10px]">Alchemy</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="illusion">
+                <h3 class="text-center text-amber-500 text-[10px]">Illusion</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="conjuration">
+                <h3 class="text-center text-amber-500 text-[10px]">Conjuration</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="destruction">
+                <h3 class="text-center text-amber-500 text-[10px]">Destruction</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="restoration">
+                <h3 class="text-center text-amber-500 text-[10px]">Restoration</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alteration">
+                <h3 class="text-center text-amber-500 text-[10px]">Alteration</h3>
+            </div>
+
+            <div class="skill-tree-card bg-gray-800 p-1.5 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="enchanting">
+                <h3 class="text-center text-amber-500 text-[10px]">Enchanting</h3>
+            </div>
+        </div>
+    </div>
+</div>
+              </body>
+            </html>
+          
