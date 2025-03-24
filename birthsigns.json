@@ -1,0 +1,407 @@
+[
+    {
+        "name": "None",
+        "group": "",
+        "description": "",
+        "bonus": ""
+    },
+    {
+        "name": "Warrior",
+        "group": "The Warrior is the first Guardian Constellation...",
+        "description": "Those under the sign of the Warrior have increased strength and endurance.",
+        "bonus": {
+            "health": {
+                "value": 50,
+                "type": "flat"
+            },
+            "armor_penetration": {
+                "value": 5,
+                "type": "percent"
+            },
+            "unarmed_damage": {
+                "value": 10,
+                "type": "flat"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "One-Handed",
+                "Two-Handed",
+                "Marksman"
+            ],
+            "effects": {
+                "health": {
+                    "value": 50,
+                    "type": "flat"
+                },
+                "armor_penetration": {
+                    "value": 10,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Lady",
+        "group": "The Lady is one of the Warrior's Charges and her season is Heartfire.",
+        "description": "Those under the sign of the Lady have increased vitality.",
+        "bonus": {
+            "health": {
+                "value": 25,
+                "type": "flat"
+            },
+            "stamina": {
+                "value": 25,
+                "type": "flat"
+            },
+            "stamina_regeneration": {
+                "value": 40,
+                "type": "percent"
+            },
+            "health_regeneration": {
+                "value": 40,
+                "type": "percent"
+            },
+            "exhaustion_resistance": {
+                "value": true,
+                "type": "boolean"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Block",
+                "Heavy Armor",
+                "One-Handed",
+                "Smithing",
+                "Two-Handed",
+                "Archery"
+            ],
+            "effects": {
+                "health_regeneration": {
+                    "value": 80,
+                    "type": "percent"
+                },
+                "stamina_regeneration": {
+                    "value": 80,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Lord",
+        "group": "The Lord's season is First Seed and he oversees all of Tamriel during the planting.",
+        "description": "The Stone of the Lord grants natural regeneration and weakened hostile spells, but also afflicts them with the Trollkin curse.",
+        "bonus": {
+            "magic_resist": {
+                "value": 10,
+                "type": "percent"
+            },
+            "armor_rating": {
+                "value": 150,
+                "type": "flat"
+            },
+            "fire_weakness": {
+                "value": 25,
+                "type": "percent"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Block",
+                "Heavy Armor",
+                "One-Handed",
+                "Smithing",
+                "Two-Handed",
+                "Archery"
+            ],
+            "effects": {
+                "fire_weakness": {
+                    "value": 0,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Steed",
+        "group": "The Steed is one of the Warrior's Charges, and her season is Mid Year.",
+        "description": "Those under the sign of the Steed have increased speed.",
+        "bonus": {
+            "movement_speed": {
+                "value": 10,
+                "type": "percent"
+            },
+            "carry_weight": {
+                "value": 25,
+                "type": "flat"
+            },
+            "stamina": {
+                "value": 50,
+                "type": "flat"
+            },
+            "slow_resistance": {
+                "value": true,
+                "type": "boolean"
+            },
+            "stamina_regeneration": {
+                "value": 1,
+                "type": "flat"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Block",
+                "Heavy Armor",
+                "One-Handed",
+                "Smithing",
+                "Two-Handed",
+                "Archery"
+            ],
+            "effects": {
+                "stamina_regeneration": {
+                    "value": 1,
+                    "type": "flat"
+                }
+            }
+        }
+    },
+    {
+        "name": "Mage",
+        "group": "The Mage is a Guardian Constellation whose season is Rain's Hand when magicka was first used by men.",
+        "description": "Those under the sign of the Mage have increased magicka reserves and cast more potent spells.",
+        "bonus": {
+            "magicka": {
+                "value": 75,
+                "type": "flat"
+            },
+            "spell_power": {
+                "value": 20,
+                "type": "percent"
+            }
+        }
+    },
+    {
+        "name": "Apprentice",
+        "group": "The Apprentice's season is Sun's Height.",
+        "description": "Those under the sign of the Apprentice have increased magicka and faster regeneration, but also have a weakness to magic.",
+        "bonus": {
+            "magicka": {
+                "value": 100,
+                "type": "flat"
+            },
+            "magicka_regeneration": {
+                "value": 300,
+                "type": "percent"
+            },
+            "magic_damage": {
+                "value": 20,
+                "type": "percent"
+            }
+        }
+    },
+    {
+        "name": "Atronach",
+        "group": "The Atronach is one of the Mage's Charges. Its season is Sun's Dusk",
+        "description": "Those under the sign of the Atronach have deep reserves of magicka and can absorb harmful magic, but cannot generate magicka on their own.",
+        "bonus": {
+            "magicka": {
+                "value": 450,
+                "type": "flat"
+            },
+            "magicka_absorption": {
+                "value": 30,
+                "type": "percent"
+            },
+            "magicka_regeneration": {
+                "value": 0,
+                "type": "flat"
+            }
+        }
+    },
+    {
+        "name": "Ritual",
+        "group": "The Ritual is one of the Mage's Charges and its season is Morning Star.",
+        "description": "Those under the sign of the Ritual have various abilities depending on the aspect of the moons and Divines.",
+        "bonus": {
+            "blessed_fire": {
+                "value": true,
+                "type": "boolean"
+            },
+            "dead_horde": {
+                "value": true,
+                "type": "boolean"
+            },
+            "salvation": {
+                "value": true,
+                "type": "boolean"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Enchanting"
+            ],
+            "effects": {
+                "enchanting_power": {
+                    "value": 10,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Thief",
+        "group": "The Thief is the last Guardian Constellation, and her season is the darkest month of Evening Star.",
+        "description": "Those under the sign of the Thief have increased dexterity.",
+        "bonus": {
+            "lockpick_durability": {
+                "value": 30,
+                "type": "percent"
+            },
+            "pickpocket_success": {
+                "value": 30,
+                "type": "percent"
+            },
+            "stealth": {
+                "value": 30,
+                "type": "percent"
+            },
+            "physical_damage_resistance": {
+                "value": 10,
+                "type": "percent"
+            }
+        }
+    },
+    {
+        "name": "Lover",
+        "group": "The Lover is one of the Thief's Charges and her season is Sun's Dawn",
+        "description": "Those under the sign of the Lover have increases agility and natural charm.",
+        "bonus": {
+            "stamina_regeneration": {
+                "value": 40,
+                "type": "percent"
+            },
+            "physical_damage_resistance": {
+                "value": 25,
+                "type": "percent"
+            },
+            "speech_skill": {
+                "value": 25,
+                "type": "flat"
+            },
+            "shout_cooldown": {
+                "value": 5,
+                "type": "percent"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Speech"
+            ],
+            "effects": {
+                "shout_cooldown": {
+                    "value": 10,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Shadow",
+        "group": "The Shadow's season is Second Seed.",
+        "description": "Those under the sign of the Shadow are naturally skilled at stealth and can hide in the shadows once a day.",
+        "bonus": {
+            "stealth": {
+                "value": 50,
+                "type": "percent"
+            },
+            "sneak_without_proficiency": {
+                "value": true,
+                "type": "boolean"
+            },
+            "moonshadow_power": {
+                "value": true,
+                "type": "boolean"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Wayfarer",
+                "Finesse",
+                "Sneak"
+            ],
+            "effects": {
+                "armor_penetration": {
+                    "value": 5,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Tower",
+        "group": "The Tower is one of the Thief's Charges and its season is Frostfall.",
+        "description": "Those under the sign of the Tower have nimble hands and a knack for finding fortune.",
+        "bonus": {
+            "price_modifier": {
+                "value": 20,
+                "type": "percent"
+            },
+            "carry_weight": {
+                "value": 50,
+                "type": "flat"
+            },
+            "lockpick_durability": {
+                "value": 40,
+                "type": "percent"
+            },
+            "lockpicking_expertise": {
+                "value": 4,
+                "type": "flat"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Light Armor",
+                "Heavy Armor",
+                "Block"
+            ],
+            "effects": {
+                "damage_reflect": {
+                    "value": 10,
+                    "type": "percent"
+                }
+            }
+        }
+    },
+    {
+        "name": "Serpent",
+        "group": "The Serpent wanders about in the sky and has no Season, though its motions are predictable to a degree.",
+        "description": "Those under the sign of the Serpent have improved precision, resistance to poison and paralysis, and can cast Serpent's Curse once a day.",
+        "bonus": {
+            "armor_penetration": {
+                "value": 10,
+                "type": "percent"
+            },
+            "poison_resistance": {
+                "value": 50,
+                "type": "percent"
+            },
+            "serpent_power": {
+                "value": true,
+                "type": "boolean"
+            }
+        },
+        "enhanced_bonus": {
+            "trigger_skills": [
+                "Block"
+            ],
+            "effects": {
+                "poison_resistance": {
+                    "value": 100,
+                    "type": "percent"
+                }
+            }
+        }
+    }
+]
