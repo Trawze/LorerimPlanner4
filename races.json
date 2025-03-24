@@ -12,6 +12,10 @@
             "magicka": 25,
             "stamina": 0
         },
+        "resistances": {
+            "disease": 75,
+            "poison": 75
+        },
         "startingSkills": {
             "smithing": 10,
             "heavyArmor": 10,
@@ -119,6 +123,12 @@
             "health": 0,
             "magicka": 75,
             "stamina": 0
+        },
+        "resistances": {
+            "fire": -10,
+            "frost": -10,
+            "shock": -10,
+            "disease": 50
         },
         "startingSkills": {
             "smithing": 10,
@@ -259,6 +269,9 @@
             "magicka": 0,
             "stamina": 0
         },
+        "resistances": {
+            "magic": 10
+        },
         "startingSkills": {
             "smithing": 20,
             "heavyArmor": 20,
@@ -293,6 +306,10 @@
             "magicka": 0,
             "stamina": 50
         },
+        "resistances": {
+            "poison": 50,
+            "disease": 50
+        },
         "startingSkills": {
             "smithing": 15,
             "heavyArmor": 10,
@@ -326,6 +343,10 @@
             "health": 0,
             "magicka": 25,
             "stamina": 50
+        },
+        "resistances": {
+            "disease": 50,
+            "poison": 25
         },
         "startingSkills": {
             "smithing": 10,
