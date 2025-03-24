@@ -635,6 +635,13 @@
                                     <p>Stamina: <span class="text-green-400">100 + 25</span></p>
                                 </div>
                             </div>
+                            <!-- Add Resistances Section -->
+                            <div class="mb-4">
+                                <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                                <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                    <p>Frost: <span class="text-green-400">50%</span></p>
+                                </div>
+                            </div>
                             <div>
                                 <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
                                 <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
@@ -1059,7 +1066,9 @@
                 </div>
 
                 <div class="level-input" id="character-level">
-                    <input type="number" min="1" max="100" placeholder="Character Level" class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm">
+                    <input type="number" min="1" max="100" placeholder="Character Level" 
+                        class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm"
+                        autocomplete="off">
                 </div>
             </div>
 
@@ -1076,7 +1085,7 @@
 
             <!-- Attribute Points Distribution -->
             <div class="flex gap-2 mb-4" id="attribute-points">
-                <button class="flex-1 bg-red-900 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors">
+                <button class="flex-1 bg-red-900 hover:bg-red-800 p-1.5 rounded-lg text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     <i class="fa-solid fa-heart text-red-500 mr-1"></i>
                     Health +5
                 </button>
@@ -1119,31 +1128,31 @@
                     <div class="grid grid-cols-2 gap-1.5">
                         <div class="flex items-center">
                             <i class="fa-solid fa-fire text-red-500 mr-2"></i>
-                            <span>Fire: 0%</span>
+                            <span>Fire: <span id="fire-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-snowflake text-blue-300 mr-2"></i>
-                            <span>Frost: 0%</span>
+                            <span>Frost: <span id="frost-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-bolt-lightning text-yellow-500 mr-2"></i>
-                            <span>Shock: 0%</span>
+                            <span>Shock: <span id="shock-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-star text-purple-500 mr-2"></i>
-                            <span>Magic: 0%</span>
+                            <span>Magic: <span id="magic-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-virus text-green-500 mr-2"></i>
-                            <span>Disease: 0%</span>
+                            <span>Disease: <span id="disease-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-skull-crossbones text-emerald-500 mr-2"></i>
-                            <span>Poison: 0%</span>
+                            <span>Poison: <span id="poison-resistance">0%</span></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fa-solid fa-shield-halved text-gray-300 mr-2"></i>
-                            <span>Damage: 0%</span>
+                            <span>Damage: <span id="damage-resistance">0%</span></span>
                         </div>
                     </div>
                 </div>

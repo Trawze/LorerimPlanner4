@@ -1,7 +1,7 @@
-// Tooltip Manager Class
+// Tooltip Manager Class - Handles all tooltip and dropdown interactions
 class TooltipManager {
     constructor() {
-        // Race tooltip elements
+        // Initialize DOM element references for race tooltips
         this.raceDropdown = document.getElementById('race-dropdown');
         this.raceButton = this.raceDropdown.querySelector('button');
         this.raceDropdownContent = this.raceDropdown.querySelector('.dropdown-content');
@@ -9,7 +9,7 @@ class TooltipManager {
         this.selectedRaceText = this.raceDropdown.querySelector('.selected-race');
         this.raceTooltip = document.getElementById('race-tooltip');
 
-        // Deity tooltip elements
+        // Initialize DOM element references for deity tooltips
         this.deityDropdown = document.getElementById('deity-dropdown');
         this.deityButton = this.deityDropdown.querySelector('button');
         this.deityDropdownContent = this.deityDropdown.querySelector('.dropdown-content');
@@ -17,7 +17,7 @@ class TooltipManager {
         this.selectedDeityText = this.deityDropdown.querySelector('.selected-deity');
         this.deityTooltip = document.getElementById('deity-tooltip');
 
-        // Lifepath tooltip elements
+        // Initialize DOM element references for lifepath tooltips
         this.lifepathDropdown = document.getElementById('lifepath-dropdown');
         this.lifepathButton = this.lifepathDropdown.querySelector('button');
         this.lifepathDropdownContent = this.lifepathDropdown.querySelector('.dropdown-content');
@@ -25,7 +25,7 @@ class TooltipManager {
         this.selectedLifepathText = this.lifepathDropdown.querySelector('.selected-lifepath');
         this.lifepathTooltip = document.getElementById('lifepath-tooltip');
 
-        // Birthsign tooltip elements
+        // Initialize DOM element references for birthsign tooltips
         this.birthsignDropdown = document.getElementById('birthsign-dropdown');
         this.birthsignButton = this.birthsignDropdown.querySelector('button');
         this.birthsignDropdownContent = this.birthsignDropdown.querySelector('.dropdown-content');
@@ -38,6 +38,57 @@ class TooltipManager {
         this.loadBirthsignData();
         this.initializeEventListeners();
         this.initializeLifepathTooltips();
+
+        // Load race data
+        this.races = [];
+        this.loadRaceData();
+        
+        // Add event listeners for race selection
+        this.setupRaceListeners();
+
+        // Initialize attribute management
+        this.levelInput = document.querySelector('#character-level input');
+        this.healthButton = document.querySelector('#attribute-points button:nth-child(1)');
+        this.magickaButton = document.querySelector('#attribute-points button:nth-child(2)');
+        this.staminaButton = document.querySelector('#attribute-points button:nth-child(3)');
+        
+        // Reset level input on page load
+        this.levelInput.value = '';
+        
+        this.baseAttributes = {
+            health: 100,
+            magicka: 100,
+            stamina: 100
+        };
+        
+        this.attributePoints = {
+            available: 0,
+            spent: {
+                health: 0,
+                magicka: 0,
+                stamina: 0
+            }
+        };
+
+        this.setupAttributeSystem();
+
+        // Initialize resistance tracking
+        this.resistances = {
+            fire: 0,
+            frost: 0,
+            shock: 0,
+            poison: 0,
+            disease: 0,
+            magic: 0,
+            damage: 0
+        };
+
+        // Track sources of resistance bonuses for future perk system
+        this.resistanceSources = {
+            racial: {},
+            perks: {},
+            // Can add more sources later (equipment, effects, etc.)
+        };
     }
 
     async loadDeityData() {
@@ -84,19 +135,96 @@ class TooltipManager {
         }
     }
 
+    async loadRaceData() {
+        try {
+            const response = await fetch('races.json');
+            this.races = await response.json();
+            this.setupRaceTooltips();
+        } catch (error) {
+            console.error('Error loading race data:', error);
+        }
+    }
+
+    setupRaceTooltips() {
+        this.races.forEach(race => {
+            const tooltipDiv = document.querySelector(`.tooltip-${race.name.toLowerCase()}`);
+            if (tooltipDiv) {
+                let tooltipHtml = `
+                    <h4 class="font-bold text-amber-500 text-lg mb-3">${race.name}</h4>
+                    <div class="mb-4">
+                        <p class="text-sm mb-2 text-blue-300">Base Stats:</p>
+                        <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                            <p>Health: <span class="${race.bonusStats.health > 0 ? 'text-green-400' : 'text-gray-300'}">${race.baseStats.health}${race.bonusStats.health > 0 ? ' + ' + race.bonusStats.health : ''}</span></p>
+                            <p>Magicka: <span class="${race.bonusStats.magicka > 0 ? 'text-green-400' : 'text-gray-300'}">${race.baseStats.magicka}${race.bonusStats.magicka > 0 ? ' + ' + race.bonusStats.magicka : ''}</span></p>
+                            <p>Stamina: <span class="${race.bonusStats.stamina > 0 ? 'text-green-400' : 'text-gray-300'}">${race.baseStats.stamina}${race.bonusStats.stamina > 0 ? ' + ' + race.bonusStats.stamina : ''}</span></p>
+                        </div>
+                    </div>`;
+
+                // Add resistances section if race has resistances
+                if (race.resistances && Object.keys(race.resistances).length > 0) {
+                    tooltipHtml += `
+                        <div class="mb-4">
+                            <p class="text-sm mb-2 text-blue-300">Resistances:</p>
+                            <div class="grid grid-cols-3 gap-4 text-sm pl-3">
+                                ${Object.entries(race.resistances).map(([type, value]) => 
+                                    `<p>${type.charAt(0).toUpperCase() + type.slice(1)}: <span class="text-green-400">${value}%</span></p>`
+                                ).join('')}
+                            </div>
+                        </div>`;
+                }
+
+                // Add starting skills section
+                tooltipHtml += `
+                    <div>
+                        <p class="text-sm mb-2 text-blue-300">Starting Skills:</p>
+                        <div class="grid grid-cols-3 gap-x-6 gap-y-1 text-sm pl-3">
+                            <div class="text-gray-300">
+                                <p class="text-amber-500 mb-1">Combat</p>
+                                <p>One-Handed: ${race.startingSkills.oneHanded}</p>
+                                <p>Two-Handed: ${race.startingSkills.twoHanded}</p>
+                                <p>Marksman: ${race.startingSkills.marksman}</p>
+                                <p>Block: ${race.startingSkills.block}</p>
+                                <p>Heavy Armor: ${race.startingSkills.heavyArmor}</p>
+                                <p>Evasion: ${race.startingSkills.evasion}</p>
+                            </div>
+                            <div class="text-gray-300">
+                                <p class="text-amber-500 mb-1">Stealth</p>
+                                <p>Sneak: ${race.startingSkills.sneak}</p>
+                                <p>Wayfarer: ${race.startingSkills.wayfarer}</p>
+                                <p>Finesse: ${race.startingSkills.finesse}</p>
+                                <p>Speech: ${race.startingSkills.speech}</p>
+                                <p>Alchemy: ${race.startingSkills.alchemy}</p>
+                                <p>Smithing: ${race.startingSkills.smithing}</p>
+                            </div>
+                            <div class="text-gray-300">
+                                <p class="text-amber-500 mb-1">Magic</p>
+                                <p>Illusion: ${race.startingSkills.illusion}</p>
+                                <p>Conjuration: ${race.startingSkills.conjuration}</p>
+                                <p>Destruction: ${race.startingSkills.destruction}</p>
+                                <p>Restoration: ${race.startingSkills.restoration}</p>
+                                <p>Alteration: ${race.startingSkills.alteration}</p>
+                                <p>Enchanting: ${race.startingSkills.enchanting}</p>
+                            </div>
+                        </div>
+                    </div>`;
+
+                tooltipDiv.innerHTML = tooltipHtml;
+            }
+        });
+    }
+
     initializeEventListeners() {
-        // Add this at the beginning of your dropdown initialization code
+        // Global click handler for dropdown management
         document.addEventListener('click', function(event) {
-            // Get all dropdown contents
             const dropdowns = document.querySelectorAll('.dropdown-content');
             
-            // If clicking outside any dropdown, close all dropdowns
+            // Close all dropdowns when clicking outside
             if (!event.target.closest('.dropdown')) {
                 dropdowns.forEach(dropdown => {
                     dropdown.classList.add('hidden');
                 });
             } else {
-                // If clicking on a dropdown, close all other dropdowns
+                // Close other dropdowns when selecting one
                 const currentDropdown = event.target.closest('.dropdown').querySelector('.dropdown-content');
                 dropdowns.forEach(dropdown => {
                     if (dropdown !== currentDropdown) {
@@ -106,7 +234,7 @@ class TooltipManager {
             }
         });
 
-        // Race dropdown events
+        // Race dropdown event handlers
         this.raceButton.addEventListener('click', () => {
             this.raceDropdownContent.classList.toggle('hidden');
         });
@@ -591,10 +719,157 @@ class TooltipManager {
     updateBirthsignTooltip(birthsign) {
         this.showBirthsignTooltip(birthsign);
     }
+
+    setupRaceListeners() {
+        const raceOptions = document.querySelectorAll('.race-option');
+        
+        raceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedRace = option.getAttribute('data-race');
+                this.updateRaceStats(selectedRace);
+            });
+        });
+    }
+
+    updateRaceStats(raceName) {
+        const raceData = this.races.find(race => 
+            race.name.toLowerCase() === raceName.toLowerCase()
+        );
+
+        if (raceData) {
+            // Reset racial resistances
+            this.resistanceSources.racial = {};
+
+            // Apply new racial resistances if they exist
+            if (raceData.resistances) {
+                this.resistanceSources.racial = { ...raceData.resistances };
+            }
+
+            // Update resistance display
+            this.updateResistances();
+
+            // Store base racial stats
+            this.baseAttributes = raceData.baseStats;
+            
+            // Update display with current attribute points
+            this.updateAttributeDisplay();
+
+            // Update race selection display
+            this.selectedRaceText.textContent = raceData.name;
+        }
+    }
+
+    setupAttributeSystem() {
+        let previousLevel = 0;
+        
+        // Listen for level changes
+        this.levelInput.addEventListener('change', () => {
+            const newLevel = parseInt(this.levelInput.value) || 0;
+            
+            // Only add points for the difference in levels
+            if (newLevel > previousLevel) {
+                // Add one point per level gained
+                this.attributePoints.available += (newLevel - previousLevel);
+            } else if (newLevel < previousLevel) {
+                // Remove points if level decreased (optional)
+                const pointsToRemove = previousLevel - newLevel;
+                this.attributePoints.available = Math.max(0, this.attributePoints.available - pointsToRemove);
+            }
+            
+            previousLevel = newLevel;
+            this.updateAttributeButtons();
+        });
+
+        // Attribute button listeners
+        this.healthButton.addEventListener('click', () => this.addAttributePoint('health'));
+        this.magickaButton.addEventListener('click', () => this.addAttributePoint('magicka'));
+        this.staminaButton.addEventListener('click', () => this.addAttributePoint('stamina'));
+    }
+
+    addAttributePoint(attribute) {
+        if (this.attributePoints.available > 0) {
+            this.attributePoints.spent[attribute] += 5;
+            this.attributePoints.available--;
+            this.updateAttributeDisplay();
+            this.updateAttributeButtons();
+        }
+    }
+
+    updateAttributeDisplay() {
+        const healthValue = document.getElementById('health-value');
+        const magickaValue = document.getElementById('magicka-value');
+        const staminaValue = document.getElementById('stamina-value');
+
+        // Calculate base values (racial base + racial bonus)
+        const raceBonus = this.races.find(race => 
+            race.name === this.selectedRaceText.textContent
+        )?.bonusStats || { health: 0, magicka: 0, stamina: 0 };
+
+        const baseHealth = this.baseAttributes.health + raceBonus.health;
+        const baseMagicka = this.baseAttributes.magicka + raceBonus.magicka;
+        const baseStamina = this.baseAttributes.stamina + raceBonus.stamina;
+
+        // Format the display with base + allocated points, only showing bonus if it exists
+        healthValue.innerHTML = baseHealth + 
+            (this.attributePoints.spent.health > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.health}</span>` : '');
+        magickaValue.innerHTML = baseMagicka + 
+            (this.attributePoints.spent.magicka > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.magicka}</span>` : '');
+        staminaValue.innerHTML = baseStamina + 
+            (this.attributePoints.spent.stamina > 0 ? ` <span class="text-green-400">+ ${this.attributePoints.spent.stamina}</span>` : '');
+    }
+
+    updateAttributeButtons() {
+        const buttonsEnabled = this.attributePoints.available > 0;
+        
+        // Update button states
+        [this.healthButton, this.magickaButton, this.staminaButton].forEach(button => {
+            if (buttonsEnabled) {
+                button.classList.remove('opacity-50', 'cursor-not-allowed');
+                button.removeAttribute('disabled');
+            } else {
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+                button.setAttribute('disabled', 'true');
+            }
+        });
+
+        // Update button text to show available points
+        const pointsText = this.attributePoints.available > 0 ? 
+            ` (${this.attributePoints.available} left)` : '';
+            
+        this.healthButton.textContent = `Health +5${pointsText}`;
+        this.magickaButton.textContent = `Magicka +5${pointsText}`;
+        this.staminaButton.textContent = `Stamina +5${pointsText}`;
+    }
+
+    updateResistances() {
+        // Get all resistance values from different sources
+        const totalResistances = { ...this.resistances };
+
+        // Add racial resistances
+        Object.entries(this.resistanceSources.racial).forEach(([type, value]) => {
+            totalResistances[type] = (totalResistances[type] || 0) + value;
+        });
+
+        // Add perk resistances (for future implementation)
+        Object.entries(this.resistanceSources.perks).forEach(([type, value]) => {
+            totalResistances[type] = (totalResistances[type] || 0) + value;
+        });
+
+        // Update the UI
+        Object.entries(totalResistances).forEach(([type, value]) => {
+            const resistanceElement = document.querySelector(`#${type}-resistance`);
+            if (resistanceElement) {
+                const displayValue = value > 0 ? `+${value}` : value;
+                const colorClass = value > 0 ? 'text-green-400' : 
+                                 value < 0 ? 'text-red-400' : 
+                                 'text-gray-300';
+                resistanceElement.innerHTML = `<span class="${colorClass}">${displayValue}%</span>`;
+            }
+        });
+    }
 }
 
-// Initialize tooltips when DOM is loaded
+// Initialize tooltip manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Initializing TooltipManager...');
-    new TooltipManager();
+    const tooltipManager = new TooltipManager();
 }); 
