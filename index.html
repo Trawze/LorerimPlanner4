@@ -22,6 +22,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="tooltips.js" defer></script>
   <script src="main.js"></script>
+  <script src="skilltree.js" defer></script>
+  <link rel="stylesheet" href="skilltree.css">
   <link rel="stylesheet" href="animations.css">
 
     
@@ -1217,75 +1219,273 @@
         <div class="w-3/4 grid grid-cols-6 gap-1" id="skill-trees">
             <!-- All skill tree cards -->
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="smithing">
-                <h3 class="text-center text-amber-500 text-xs">Smithing</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Smithing</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="smithing">
+                    </div>
+                </div>
             </div>
             
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="heavy-armor">
-                <h3 class="text-center text-amber-500 text-xs">Heavy Armor</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Heavy Armor</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="heavyArmor">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="block">
-                <h3 class="text-center text-amber-500 text-xs">Block</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Block</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="block">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="two-handed">
-                <h3 class="text-center text-amber-500 text-xs">Two-Handed</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Two-Handed</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="twoHanded">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="one-handed">
-                <h3 class="text-center text-amber-500 text-xs">One-Handed</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">One-Handed</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="oneHanded">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="marksman">
-                <h3 class="text-center text-amber-500 text-xs">Marksman</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Marksman</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="marksman">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="evasion">
-                <h3 class="text-center text-amber-500 text-xs">Evasion</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Evasion</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="evasion">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="sneak">
-                <h3 class="text-center text-amber-500 text-xs">Sneak</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Sneak</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="sneak">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="finesse">
-                <h3 class="text-center text-amber-500 text-xs">Finesse</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Finesse</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="finesse">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="wayfarer">
-                <h3 class="text-center text-amber-500 text-xs">Wayfarer</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Wayfarer</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="wayfarer">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="speech">
-                <h3 class="text-center text-amber-500 text-xs">Speech</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Speech</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="speech">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alchemy">
-                <h3 class="text-center text-amber-500 text-xs">Alchemy</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Alchemy</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="alchemy">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="illusion">
-                <h3 class="text-center text-amber-500 text-xs">Illusion</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Illusion</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="illusion">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="conjuration">
-                <h3 class="text-center text-amber-500 text-xs">Conjuration</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Conjuration</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="conjuration">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="destruction">
-                <h3 class="text-center text-amber-500 text-xs">Destruction</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Destruction</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="destruction">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="restoration">
-                <h3 class="text-center text-amber-500 text-xs">Restoration</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Restoration</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="restoration">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="alteration">
-                <h3 class="text-center text-amber-500 text-xs">Alteration</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Alteration</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="alteration">
+                    </div>
+                </div>
             </div>
 
             <div class="skill-tree-card bg-gray-800 p-1 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors" id="enchanting">
-                <h3 class="text-center text-amber-500 text-xs">Enchanting</h3>
+                <div class="flex flex-col h-full">
+                    <h3 class="text-center text-amber-500 text-xs">Enchanting</h3>
+                    <div class="skill-level mt-1">
+                        <span class="skill-level-display text-center text-xs block">0</span>
+                        <input type="number" 
+                               min="0" 
+                               max="100" 
+                               value="0" 
+                               class="hidden skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                               data-skill="enchanting">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

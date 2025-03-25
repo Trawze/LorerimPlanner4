@@ -110,6 +110,11 @@ class TooltipManager {
         } else {
             this.initializePerkPointSystem();
         }
+
+        // Add tracking for current skill levels
+        this.skillLevels = {};
+        this.setupSkillLevels();
+        this.setupSkillInputHandlers();
     }
 
     async loadDeityData() {
@@ -263,7 +268,7 @@ class TooltipManager {
         this.raceOptions.forEach(option => {
             option.addEventListener('click', (e) => {
                 const selectedRace = e.target.dataset.race;
-                this.selectedRaceText.textContent = e.target.textContent;
+                this.selectedRaceText.textContent = selectedRace.charAt(0).toUpperCase() + selectedRace.slice(1);
                 this.raceDropdownContent.classList.add('hidden');
                 this.updateRaceTooltip(selectedRace);
             });
@@ -796,6 +801,9 @@ class TooltipManager {
 
             // Update race selection display
             this.selectedRaceText.textContent = raceData.name;
+
+            // Update skill levels with the race's starting skills
+            this.updateSkillLevelsFromRace(raceData);
         }
     }
 
@@ -1104,5 +1112,50 @@ class TooltipManager {
         }
 
         perkPointsDisplay.textContent = `Available Perk Points: ${Math.max(0, this.perkPoints.available)}`;
+    }
+
+    setupSkillLevels() {
+        // Initialize all skills to 0
+        const skillInputs = document.querySelectorAll('.skill-level-input');
+        skillInputs.forEach(input => {
+            const skillName = input.dataset.skill;
+            this.skillLevels[skillName] = 0;
+        });
+    }
+
+    setupSkillInputHandlers() {
+        document.querySelectorAll('.skill-level-input').forEach(input => {
+            input.addEventListener('click', (e) => e.stopPropagation());
+            
+            input.addEventListener('input', (e) => {
+                this.updateSkillLevel(e.target.dataset.skill, e.target.value);
+            });
+        });
+    }
+
+    updateSkillLevel(skillName, value) {
+        value = parseInt(value);
+        if (isNaN(value)) value = 0;
+        if (value < 0) value = 0;
+        if (value > 100) value = 100;
+
+        this.skillLevels[skillName] = value;
+
+        // Update UI
+        const skillCard = document.querySelector(`[data-skill="${skillName}"]`).closest('.skill-tree-card');
+        if (skillCard) {
+            const display = skillCard.querySelector('.skill-level-display');
+            const input = skillCard.querySelector('.skill-level-input');
+            if (display) display.textContent = value;
+            if (input) input.value = value;
+        }
+    }
+
+    updateSkillLevelsFromRace(race) {
+        if (!race || !race.startingSkills) return;
+        
+        Object.entries(race.startingSkills).forEach(([skill, value]) => {
+            this.updateSkillLevel(skill, value);
+        });
     }
 } 

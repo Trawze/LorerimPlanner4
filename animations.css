@@ -85,4 +85,54 @@
     }
 }
 
-/* Add any future animations here */ 
+/* Add any future animations here */
+
+/* Skill level input styling */
+.skill-level-input {
+    transition: all 0.3s ease-in-out;
+}
+
+.skill-tree-expanded .skill-level-input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100px;
+    margin: 0.5rem auto;
+}
+
+/* Prevent clicking the input from triggering the expand */
+.skill-level-input {
+    cursor: text;
+}
+
+.skill-level-input::-webkit-inner-spin-button,
+.skill-level-input::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+/* Skill level styling */
+.skill-level-display {
+    color: #d1d5db; /* text-gray-300 */
+}
+
+/* Hide display and show input when expanded */
+.skill-tree-expanded .skill-level-display {
+    display: none;
+}
+
+.skill-tree-expanded .skill-level-input {
+    display: block;
+    font-size: 1rem;
+    width: 100px;
+    margin: 0.5rem auto;
+}
+
+/* Input styling */
+.skill-level-input::-webkit-inner-spin-button,
+.skill-level-input::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+/* Prevent clicking the input from triggering the expand */
+.skill-level-input {
+    cursor: text;
+} 
