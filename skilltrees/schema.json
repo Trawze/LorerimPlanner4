@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Tree Schema",
+  "description": "Schema for validating Lorerim skill tree JSON files",
+  "type": "object",
+  "required": ["name", "description", "perks", "connections"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the skill tree"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the skill tree"
+    },
+    "perks": {
+      "type": "array",
+      "description": "Array of perks in the skill tree",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "position", "requirements", "effects"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the perk"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the perk"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the perk's effects"
+          },
+          "position": {
+            "type": "object",
+            "required": ["mini", "full"],
+            "properties": {
+              "mini": {
+                "type": "object",
+                "required": ["x", "y"],
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "X position in percentage for mini view"
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Y position in percentage for mini view"
+                  }
+                }
+              },
+              "full": {
+                "type": "object",
+                "required": ["x", "y"],
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "X position in percentage for full view"
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Y position in percentage for full view"
+                  }
+                }
+              }
+            }
+          },
+          "requirements": {
+            "type": "object",
+            "required": ["skill", "prerequisites"],
+            "properties": {
+              "skill": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Required skill level"
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "IDs of required perks"
+                }
+              }
+            }
+          },
+          "effects": {
+            "type": "object",
+            "description": "Effects granted by the perk",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Magnitude of the effect"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["percent", "flat"],
+                  "description": "Type of modification"
+                },
+                "condition": {
+                  "type": "string",
+                  "description": "Optional condition for the effect"
+                }
+              },
+              "required": ["value", "type"]
+            }
+          }
+        }
+      }
+    },
+    "connections": {
+      "type": "array",
+      "description": "Connections between perks",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "ID of the source perk"
+          },
+          "to": {
+            "type": "string",
+            "description": "ID of the target perk"
+          }
+        }
+      }
+    }
+  }
+} 

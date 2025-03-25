@@ -97,6 +97,19 @@ class TooltipManager {
         };
 
         this.initializeSkillTrees();
+
+        // Add perk points tracking
+        this.perkPoints = {
+            available: 0,
+            spent: 0
+        };
+        
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.initializePerkPointSystem());
+        } else {
+            this.initializePerkPointSystem();
+        }
     }
 
     async loadDeityData() {
@@ -787,13 +800,15 @@ class TooltipManager {
     }
 
     setupAttributeSystem() {
-        let previousLevel = 0;
+        let previousLevel = 1; // Start from level 1
         
         // Listen for level changes
         this.levelInput.addEventListener('change', () => {
-            const newLevel = parseInt(this.levelInput.value) || 0;
+            const newLevel = parseInt(this.levelInput.value) || 1; // Default to 1 instead of 0
             if (newLevel > previousLevel) {
-                this.attributePoints.available += (newLevel - previousLevel);
+                // Only add points for levels above 1
+                const pointsToAdd = Math.max(0, newLevel - Math.max(previousLevel, 1));
+                this.attributePoints.available += pointsToAdd;
             } else if (newLevel < previousLevel) {
                 const pointsToRemove = previousLevel - newLevel;
                 this.attributePoints.available = Math.max(0, this.attributePoints.available - pointsToRemove);
@@ -1059,9 +1074,35 @@ class TooltipManager {
         // Update resistance display
         this.updateResistances();
     }
-}
 
-// Initialize tooltip manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const tooltipManager = new TooltipManager();
-}); 
+    initializePerkPointSystem() {
+        const levelInput = document.querySelector('#character-level input');
+        if (!levelInput) {
+            console.error('Level input element not found!');
+            return;
+        }
+
+        levelInput.addEventListener('input', (e) => this.handleLevelChange(e));
+    }
+
+    handleLevelChange(event) {
+        const level = parseInt(event.target.value) || 0;
+        // Subtract 1 from level to start perk points from level 2
+        this.perkPoints.available = Math.max(0, level - 1);
+        this.updatePerkPointsDisplay();
+    }
+
+    updatePerkPointsDisplay() {
+        const levelContainer = document.querySelector('#character-level');
+        let perkPointsDisplay = document.querySelector('#perk-points-display');
+
+        if (!perkPointsDisplay) {
+            perkPointsDisplay = document.createElement('div');
+            perkPointsDisplay.id = 'perk-points-display';
+            perkPointsDisplay.className = 'text-amber-500 text-sm mt-2 text-center font-bold bg-gray-800 p-1.5 rounded-lg border border-gray-700';
+            levelContainer.appendChild(perkPointsDisplay);
+        }
+
+        perkPointsDisplay.textContent = `Available Perk Points: ${Math.max(0, this.perkPoints.available)}`;
+    }
+} 

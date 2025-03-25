@@ -1,0 +1,128 @@
+{
+  "name": "One Handed",
+  "description": "The art of combat using one-handed weapons such as swords, maces, and war axes.",
+  "perks": [
+    {
+      "id": "basicOneHanded",
+      "name": "Basic One Handed Combat",
+      "description": "One-handed weapons do 20% more damage.",
+      "position": {
+        "mini": {"x": 50, "y": 20},
+        "full": {"x": 50, "y": 15}
+      },
+      "requirements": {
+        "skill": 0,
+        "prerequisites": []
+      },
+      "effects": {
+        "damage": {
+          "onehandeddamage": {
+            "value": 20,
+            "type": "percent"
+          }
+        }
+      }
+    },
+    {
+      "id": "weaponMastery",
+      "name": "Weapon Mastery",
+      "description": "Specific one-handed weapon types do 40% more damage.",
+      "position": {
+        "mini": {"x": 50, "y": 40},
+        "full": {"x": 50, "y": 35}
+      },
+      "requirements": {
+        "skill": 20,
+        "prerequisites": ["basicOneHanded"]
+      },
+      "effects": {
+        "damage": {
+          "onehandeddamage": {
+            "value": 40,
+            "type": "percent"
+          }
+        }
+      }
+    },
+    {
+      "id": "swordFocus",
+      "name": "Sword Focus",
+      "description": "Swords have 10% armor penetration and 10% increased critical damage.",
+      "position": {
+        "mini": {"x": 20, "y": 60},
+        "full": {"x": 25, "y": 55}
+      },
+      "requirements": {
+        "skill": 40,
+        "prerequisites": ["weaponMastery"]
+      },
+      "effects": {
+        "combat": {
+          "armorpenetration": {
+            "value": 10,
+            "type": "percent",
+            "condition": "wielding sword"
+          },
+          "criticaldamage": {
+            "value": 10,
+            "type": "percent",
+            "condition": "wielding sword"
+          }
+        }
+      }
+    },
+    {
+      "id": "maceFocus",
+      "name": "Mace Focus",
+      "description": "Maces have 20% armor penetration and stagger enemies more often.",
+      "position": {
+        "mini": {"x": 50, "y": 60},
+        "full": {"x": 50, "y": 55}
+      },
+      "requirements": {
+        "skill": 40,
+        "prerequisites": ["weaponMastery"]
+      },
+      "effects": {
+        "combat": {
+          "armorpenetration": {
+            "value": 20,
+            "type": "percent",
+            "condition": "wielding mace"
+          },
+          "staggerchance": {
+            "value": 25,
+            "type": "percent",
+            "condition": "wielding mace"
+          }
+        }
+      }
+    }
+  ],
+  "connections": [
+    {
+      "from": "basicOneHanded",
+      "to": "weaponMastery"
+    },
+    {
+      "from": "weaponMastery",
+      "to": "swordFocus"
+    },
+    {
+      "from": "weaponMastery",
+      "to": "maceFocus"
+    },
+    {
+      "from": "weaponMastery",
+      "to": "axeFocus"
+    },
+    {
+      "from": "weaponMastery",
+      "to": "dualSwords"
+    },
+    {
+      "from": "swordFocus",
+      "to": "dualSwords"
+    }
+  ]
+} 

@@ -21,6 +21,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="tooltips.js" defer></script>
+  <script src="main.js"></script>
   <link rel="stylesheet" href="animations.css">
 
     
@@ -1067,9 +1068,16 @@
                 </div>
 
                 <div class="level-input" id="character-level">
-                    <input type="number" min="1" max="100" placeholder="Character Level" 
-                        class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm"
-                        autocomplete="off">
+                    <input type="number" 
+                           min="1" 
+                           max="100" 
+                           placeholder="Character Level" 
+                           class="w-full bg-gray-800 p-1.5 rounded-lg border border-gray-700 text-sm"
+                           autocomplete="off">
+                    <!-- Added a container div for better spacing -->
+                    <div class="mt-2">
+                        <!-- Perk points display will be inserted here -->
+                    </div>
                 </div>
             </div>
 
