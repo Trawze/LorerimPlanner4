@@ -125,7 +125,8 @@ class TooltipManager {
 
     async loadDeityData() {
         try {
-            const response = await fetch('./dieties.json');
+            const basePath = window.location.pathname.startsWith('/') ? window.location.pathname : '/' + window.location.pathname;
+            const response = await fetch(`${basePath}dieties.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -1153,7 +1154,8 @@ class TooltipManager {
 
     async loadSkillTreeData(skillName) {
         try {
-            const response = await fetch(`/skilltrees/${skillName}.json`);
+            const basePath = window.location.pathname.startsWith('/') ? window.location.pathname : '/' + window.location.pathname;
+            const response = await fetch(`${basePath}skilltrees/${skillName}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
