@@ -29,11 +29,39 @@ function updateSkillLevel(e) {
         display.textContent = value;
     }
     
-    // Here you can add logic to update perk availability based on skill level
+    // Logic to update perk availability based on skill level
     updatePerkAvailability(e.target.dataset.skill, value);
 }
 
 function updatePerkAvailability(skillName, level) {
     // Add logic here to enable/disable perks based on skill level
     console.log(`${skillName} level changed to ${level}`);
+}
+
+async function loadSkillTreeData(skillName) {
+    try {
+        const response = await fetch(`/skilltrees/${skillName}.json`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error loading skill tree data for ${skillName}:`, error);
+        return null;
+    }
+}
+
+function createPerkElement(perk) {
+    const perkElement = document.createElement('div');
+    perkElement.className = 'perk-node bg-gray-700 p-4 rounded-lg m-2';
+    perkElement.innerHTML = `
+        <h4 class="text-amber-500 font-bold mb-2">${perk.name}</h4>
+        <p class="text-gray-300 text-sm mb-2">${perk.description}</p>
+        <div class="text-gray-400 text-xs">
+            Required Skill Level: ${perk.requirements.skill}
+        </div>
+    `;
+    // Use the same spacing and offset as the connections
+    perkElement.style.position = 'absolute';
+    perkElement.style.left = `${perk.position.x * 150 + 125}px`;
+    perkElement.style.top = `${perk.position.y * 150 + 100}px`;
+    return perkElement;
 }

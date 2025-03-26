@@ -1,128 +1,73 @@
 {
-  "name": "One Handed",
-  "description": "The art of combat using one-handed weapons such as swords, maces, and war axes.",
+  "name": "One-Handed",
+  "description": "The art of fighting with one-handed weapons like swords, maces, and war axes.",
   "perks": [
     {
-      "id": "basicOneHanded",
-      "name": "Basic One Handed Combat",
-      "description": "One-handed weapons do 20% more damage.",
+      "id": "one_handed_mastery",
+      "name": "One-Handed Mastery",
+      "description": "Your training grants you superior fighting techniques with one-handed weapons.",
       "position": {
-        "mini": {"x": 50, "y": 20},
-        "full": {"x": 50, "y": 15}
+        "x": 3.5,
+        "y": 2.75
       },
       "requirements": {
         "skill": 0,
         "prerequisites": []
       },
       "effects": {
-        "damage": {
-          "onehandeddamage": {
-            "value": 20,
-            "type": "percent"
-          }
+        "one_handed_damage": {
+          "value": 20,
+          "type": "percent"
         }
       }
     },
     {
-      "id": "weaponMastery",
-      "name": "Weapon Mastery",
-      "description": "Specific one-handed weapon types do 40% more damage.",
+      "id": "precise_strikes",
+      "name": "Precise Strikes",
+      "description": "Careful aim increases your armor penetration with one-handed weapons.",
       "position": {
-        "mini": {"x": 50, "y": 40},
-        "full": {"x": 50, "y": 35}
+        "x": 3.5,
+        "y": 1.75
       },
       "requirements": {
         "skill": 20,
-        "prerequisites": ["basicOneHanded"]
+        "prerequisites": ["one_handed_mastery"]
       },
       "effects": {
-        "damage": {
-          "onehandeddamage": {
-            "value": 40,
-            "type": "percent"
-          }
+        "armor_penetration": {
+          "value": 10,
+          "type": "percent"
         }
       }
     },
     {
-      "id": "swordFocus",
-      "name": "Sword Focus",
-      "description": "Swords have 10% armor penetration and 10% increased critical damage.",
+      "id": "axe_mastery",
+      "name": "Axe Mastery",
+      "description": "Your training grants you superior fighting techniques with axes.",
       "position": {
-        "mini": {"x": 20, "y": 60},
-        "full": {"x": 25, "y": 55}
+        "x": 3.3,
+        "y": 1
       },
       "requirements": {
-        "skill": 40,
-        "prerequisites": ["weaponMastery"]
+        "skill": 20,
+        "prerequisites": ["precise_strikes"]
       },
       "effects": {
-        "combat": {
-          "armorpenetration": {
-            "value": 10,
-            "type": "percent",
-            "condition": "wielding sword"
-          },
-          "criticaldamage": {
-            "value": 10,
-            "type": "percent",
-            "condition": "wielding sword"
-          }
-        }
-      }
-    },
-    {
-      "id": "maceFocus",
-      "name": "Mace Focus",
-      "description": "Maces have 20% armor penetration and stagger enemies more often.",
-      "position": {
-        "mini": {"x": 50, "y": 60},
-        "full": {"x": 50, "y": 55}
-      },
-      "requirements": {
-        "skill": 40,
-        "prerequisites": ["weaponMastery"]
-      },
-      "effects": {
-        "combat": {
-          "armorpenetration": {
-            "value": 20,
-            "type": "percent",
-            "condition": "wielding mace"
-          },
-          "staggerchance": {
-            "value": 25,
-            "type": "percent",
-            "condition": "wielding mace"
-          }
+        "armor_penetration": {
+          "value": 10,
+          "type": "percent"
         }
       }
     }
   ],
   "connections": [
     {
-      "from": "basicOneHanded",
-      "to": "weaponMastery"
+      "from": "one_handed_mastery",
+      "to": "precise_strikes"
     },
     {
-      "from": "weaponMastery",
-      "to": "swordFocus"
-    },
-    {
-      "from": "weaponMastery",
-      "to": "maceFocus"
-    },
-    {
-      "from": "weaponMastery",
-      "to": "axeFocus"
-    },
-    {
-      "from": "weaponMastery",
-      "to": "dualSwords"
-    },
-    {
-      "from": "swordFocus",
-      "to": "dualSwords"
+      "from": "precise_strikes",
+      "to": "axe_mastery"
     }
   ]
-} 
+}

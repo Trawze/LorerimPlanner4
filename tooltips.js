@@ -115,6 +115,12 @@ class TooltipManager {
         this.skillLevels = {};
         this.setupSkillLevels();
         this.setupSkillInputHandlers();
+
+        // Perk positioning constants
+        this.PERK_SPACING = 150;    // Space between perks
+        this.PERK_OFFSET_X = 125;   // Horizontal offset from left
+        this.PERK_OFFSET_Y = 100;   // Vertical offset from top
+        this.PERK_DOT_SIZE = 24;    // Size of the perk dot
     }
 
     async loadDeityData() {
@@ -1006,19 +1012,11 @@ class TooltipManager {
             closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
             card.appendChild(closeButton);
             
-            // Add click handler for the close button
-            closeButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.classList.remove('skill-tree-expanded');
-                skillTreeContainer.classList.remove('skill-tree-fullview');
-                closeButton.classList.add('hidden');
-            });
-
             // Main card click handler
-            card.addEventListener('click', (e) => {
+            card.addEventListener('click', async (e) => {
                 // Ignore if clicking the close button
                 if (e.target.closest('.skill-tree-close-btn')) return;
-
+                
                 // Only expand if the card isn't already expanded
                 if (!card.classList.contains('skill-tree-expanded')) {
                     // Close all other cards first
@@ -1028,25 +1026,260 @@ class TooltipManager {
                         if (otherCloseButton) {
                             otherCloseButton.classList.add('hidden');
                         }
+                        // Clean up any existing perk containers
+                        const oldPerkContainer = c.querySelector('.expanded-content');
+                        if (oldPerkContainer) {
+                            oldPerkContainer.remove();
+                        }
+                        // Ensure original content is visible
+                        const originalContent = c.querySelector('.flex.flex-col');
+                        if (originalContent) {
+                            originalContent.style.display = 'flex';
+                        }
                     });
                     
-                    // Calculate the card's position relative to the container
+                    // Load skill tree data
+                    const skillName = card.id;
+                    const skillTreeData = await this.loadSkillTreeData(skillName);
+                    
+                    if (skillTreeData) {
+                        // Get the current skill level
+                        const originalContent = card.querySelector('.flex.flex-col');
+                        const currentValue = card.querySelector('.skill-level-input').value;
+                        
+                        // Hide original content
+                        originalContent.style.display = 'none';
+                        
+                        // Create expanded content container
+                        const expandedContent = document.createElement('div');
+                        expandedContent.className = 'expanded-content w-full h-full flex flex-col';
+
+                        // Add header with skill level input
+                        expandedContent.innerHTML = `
+                            <div class="text-center p-4">
+                                <h3 class="text-2xl text-amber-500 mb-4">${skillTreeData.name}</h3>
+                                <p class="text-gray-300 mb-4">${skillTreeData.description}</p>
+                                <div class="skill-level-container mb-4">
+                                    <div class="skill-level mt-1">
+                                        <span class="skill-level-display text-center text-lg block">${currentValue}</span>
+                                        <input type="number" 
+                                            min="0" 
+                                            max="100" 
+                                            value="${currentValue}" 
+                                            class="skill-level-input w-full bg-gray-700 p-2 rounded border border-gray-600 text-center"
+                                            data-skill="${card.id}">
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Create perk container
+                        const perkContainer = document.createElement('div');
+                        perkContainer.className = 'perk-container relative flex-grow';
+                        
+                        // Draw connections first
+                        this.drawPerkConnections(skillTreeData.perks, skillTreeData.connections, perkContainer);
+                        
+                        // Add perks
+                        skillTreeData.perks.forEach(perk => {
+                            const perkElement = this.createPerkElement(perk);
+                            perkContainer.appendChild(perkElement);
+                        });
+                        
+                        // Add perk container to expanded content
+                        expandedContent.appendChild(perkContainer);
+                        
+                        // Add expanded content to card
+                        card.appendChild(expandedContent);
+
+                        // Add event listener to sync values
+                        const expandedInput = expandedContent.querySelector('.skill-level-input');
+                        expandedInput.addEventListener('input', (e) => {
+                            const value = e.target.value;
+                            const originalInput = card.querySelector('.flex.flex-col .skill-level-input');
+                            const originalDisplay = card.querySelector('.flex.flex-col .skill-level-display');
+                            originalInput.value = value;
+                            originalDisplay.textContent = value;
+                            this.updateSkillLevel(card.id, value);
+                        });
+                    }
+                    
+                    // Calculate and set transform origin
                     const rect = card.getBoundingClientRect();
                     const containerRect = skillTreeContainer.getBoundingClientRect();
-                    
-                    // Calculate the origin point as percentages
                     const originX = ((rect.left - containerRect.left) / containerRect.width) * 100;
                     const originY = ((rect.top - containerRect.top) / containerRect.height) * 100;
-                    
-                    // Set the transform origin
                     card.style.transformOrigin = `${originX}% ${originY}%`;
                     
-                    // Expand the current card and show its close button
+                    // Expand the card
                     card.classList.add('skill-tree-expanded');
                     skillTreeContainer.classList.add('skill-tree-fullview');
                     closeButton.classList.remove('hidden');
                 }
             });
+
+            // Update close button handler
+            closeButton.addEventListener('click', () => {
+                const card = closeButton.closest('.skill-tree-card');
+                const expandedContent = card.querySelector('.expanded-content');
+                const originalContent = card.querySelector('.flex.flex-col');
+                
+                // Remove expanded content
+                if (expandedContent) {
+                    // Get the final value before removing
+                    const finalValue = expandedContent.querySelector('.skill-level-input').value;
+                    
+                    // Update original content values
+                    const originalInput = originalContent.querySelector('.skill-level-input');
+                    const originalDisplay = originalContent.querySelector('.skill-level-display');
+                    originalInput.value = finalValue;
+                    originalDisplay.textContent = finalValue;
+                    
+                    expandedContent.remove();
+                }
+                
+                // Show original content
+                if (originalContent) {
+                    originalContent.style.display = 'flex';
+                }
+                
+                // Reset card state
+                card.classList.remove('skill-tree-expanded');
+                skillTreeContainer.classList.remove('skill-tree-fullview');
+                closeButton.classList.add('hidden');
+            });
+        });
+    }
+
+    async loadSkillTreeData(skillName) {
+        try {
+            const response = await fetch(`/skilltrees/${skillName}.json`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error(`Error loading skill tree data for ${skillName}:`, error);
+            return null;
+        }
+    }
+
+    // New utility function for calculating perk positions
+    calculatePerkPosition(perk) {
+        return {
+            x: perk.position.x * this.PERK_SPACING + this.PERK_OFFSET_X,
+            y: perk.position.y * this.PERK_SPACING + this.PERK_OFFSET_Y,
+            centerX: perk.position.x * this.PERK_SPACING + this.PERK_OFFSET_X + (this.PERK_DOT_SIZE / 2),
+            centerY: perk.position.y * this.PERK_SPACING + this.PERK_OFFSET_Y + (this.PERK_DOT_SIZE / 2)
+        };
+    }
+
+    createPerkElement(perk) {
+        const perkElement = document.createElement('div');
+        perkElement.className = 'perk-node';
+        perkElement.innerHTML = `
+            <div class="perk-dot" data-perk-id="${perk.id}"></div>
+            <div class="perk-name">${perk.name}</div>
+        `;
+        
+        // Use the utility function for positioning
+        const position = this.calculatePerkPosition(perk);
+        perkElement.style.left = `${position.x}px`;
+        perkElement.style.top = `${position.y}px`;
+        
+        // Add tooltip functionality
+        const perkDot = perkElement.querySelector('.perk-dot');
+        perkDot.addEventListener('mouseenter', (e) => this.showPerkTooltip(e, perk));
+        perkDot.addEventListener('mouseleave', () => this.hidePerkTooltip());
+        
+        // Add click handler for toggling perk state
+        perkDot.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card from collapsing when clicking perk
+            this.togglePerkState(perkElement, perk);
+        });
+        
+        return perkElement;
+    }
+
+    togglePerkState(perkElement, perk) {
+        const perkDot = perkElement.querySelector('.perk-dot');
+        const isActive = perkDot.classList.toggle('active');
+        
+        // Toggle active state on the entire perk node for name color change
+        perkElement.classList.toggle('active', isActive);
+    }
+
+    showPerkTooltip(event, perk) {
+        // Remove any existing tooltip
+        this.hidePerkTooltip();
+        
+        // Create tooltip
+        const tooltip = document.createElement('div');
+        tooltip.className = 'perk-tooltip';
+        
+        // Format effects text
+        const effectsText = Object.entries(perk.effects)
+            .map(([key, effect]) => {
+                const sign = effect.value > 0 ? '+' : '';
+                return `${sign}${effect.value}${effect.type === 'percent' ? '%' : ''} ${key.replace(/_/g, ' ')}`;
+            })
+            .join(', ');
+        
+        tooltip.innerHTML = `
+            <div class="perk-tooltip-title">${perk.name}</div>
+            <div class="perk-tooltip-description">${perk.description}</div>
+            <div class="perk-tooltip-effect">${effectsText}</div>
+            ${perk.requirements.skill > 0 ? 
+                `<div class="perk-tooltip-requirement">Requires ${perk.requirements.skill} skill level</div>` : ''}
+        `;
+        
+        // Position tooltip
+        const rect = event.target.getBoundingClientRect();
+        tooltip.style.left = `${rect.right + 10}px`;
+        tooltip.style.top = `${rect.top - 10}px`;
+        
+        // Add to DOM
+        document.body.appendChild(tooltip);
+        
+        // Show tooltip
+        requestAnimationFrame(() => tooltip.classList.add('visible'));
+    }
+
+    hidePerkTooltip() {
+        const tooltip = document.querySelector('.perk-tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+
+    drawPerkConnections(perks, connections, container) {
+        const connectionsContainer = document.createElement('div');
+        connectionsContainer.className = 'connections-layer';
+        container.appendChild(connectionsContainer);
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'perk-connections');
+        connectionsContainer.appendChild(svg);
+        
+        connections.forEach(connection => {
+            const fromPerk = perks.find(p => p.id === connection.from);
+            const toPerk = perks.find(p => p.id === connection.to);
+            
+            if (fromPerk && toPerk) {
+                const fromPos = this.calculatePerkPosition(fromPerk);
+                const toPos = this.calculatePerkPosition(toPerk);
+                
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', fromPos.centerX);
+                line.setAttribute('y1', fromPos.centerY);
+                line.setAttribute('x2', toPos.centerX);
+                line.setAttribute('y2', toPos.centerY);
+                line.setAttribute('stroke', 'rgb(251 191 36)');
+                line.setAttribute('stroke-width', '2');
+                
+                svg.appendChild(line);
+            }
         });
     }
 

@@ -135,4 +135,149 @@
 /* Prevent clicking the input from triggering the expand */
 .skill-level-input {
     cursor: text;
+}
+
+/* Perk node styling */
+.perk-node {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 24px; /* Match the dot width */
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out 0.3s forwards;
+    z-index: 2;
+}
+
+.perk-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgb(75 85 99);
+    border: 2px solid rgb(55 65 81);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+}
+
+.perk-dot.active {
+    background-color: rgb(251 191 36); /* amber-500 */
+    border: 2px solid rgb(245 158 11); /* amber-600 */
+}
+
+.perk-dot:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.perk-name {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgb(156 163 175);
+    white-space: nowrap;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+}
+
+.perk-node.active .perk-name {
+    color: rgb(251 191 36); /* amber-500 */
+}
+
+/* Perk connections */
+.perk-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Tooltip styling */
+.perk-tooltip {
+    position: absolute;
+    background-color: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgb(251 191 36);
+    border-radius: 4px;
+    padding: 12px;
+    width: max-content;
+    max-width: 300px;
+    color: white;
+    font-size: 0.875rem;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.perk-tooltip.visible {
+    opacity: 1;
+}
+
+.perk-tooltip-title {
+    color: rgb(251 191 36);
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.perk-tooltip-description {
+    color: rgb(209 213 219);
+    margin-bottom: 8px;
+}
+
+.perk-tooltip-effect {
+    color: rgb(167 243 208);
+    font-style: italic;
+}
+
+.perk-tooltip-requirement {
+    color: rgb(252 165 165);
+    margin-top: 4px;
+    font-size: 0.8rem;
+}
+
+.perk-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 20px;
+}
+
+.expanded-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+}
+
+/* Ensure proper cleanup */
+.skill-tree-card:not(.skill-tree-expanded) .expanded-content {
+    display: none;
+}
+
+/* Cleanup styles */
+.skill-tree-fullview .skill-tree-card:not(.skill-tree-expanded) {
+    display: none !important;
+}
+
+/* Connection layer styling */
+.connections-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Debug styles */
+.debug-border {
+    border: 1px dashed rgba(255, 0, 0, 0.5);
 } 
