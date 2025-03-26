@@ -40,7 +40,9 @@ function updatePerkAvailability(skillName, level) {
 
 async function loadSkillTreeData(skillName) {
     try {
-        const response = await fetch(`/skilltrees/${skillName}.json`);
+        // Get the base URL for GitHub Pages
+        const basePath = window.location.pathname.startsWith('/') ? window.location.pathname : '/' + window.location.pathname;
+        const response = await fetch(`${basePath}skilltrees/${skillName}.json`);
         const data = await response.json();
         return data;
     } catch (error) {
